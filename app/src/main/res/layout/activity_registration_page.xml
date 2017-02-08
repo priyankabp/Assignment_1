@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.android.assignment_1.RegistrationPage"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/new_background">
+
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:id="@+id/Reg_UserName"
+        android:hint="Enter a username"/>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:id="@+id/Reg_SName"
+        android:hint="Enter your name"/>
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="10dp" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:id="@+id/Reg_SMajor"
+        android:hint="Enter your major"/>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:id="@+id/Reg_Email"
+        android:hint="Enter your MSU email"/>
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="10dp" />
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:id="@+id/Reg_pass1"
+        android:hint="Enter your password"/>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30sp"
+        android:id="@+id/Reg_pass2"
+        android:hint="Confirm  password"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_Reg"
+        android:text="Register"
+        android:backgroundTint="#0FFF"/>
+</LinearLayout>
