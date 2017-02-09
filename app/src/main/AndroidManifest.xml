@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ForgotPasswordPage"></activity>
+        <activity android:name=".RegistrationPage"></activity>
     </application>
 
 </manifest>
