@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Username: "
-            android:id="@+id/text_name_MA_1"
+            android:id="@+id/MA_textview_name"
             />
 
         <EditText
@@ -47,14 +47,14 @@
             android:inputType="textPersonName"
             android:hint="Enter your username"
             android:ems="10"
-            android:id="@+id/editText_name_MA1"
+            android:id="@+id/MA_editText_name"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Password: "
-            android:id="@+id/text_name_MA_2"
+            android:id="@+id/MA_textview_password"
             />
 
         <EditText
@@ -63,7 +63,7 @@
             android:inputType="textPassword"
             android:hint="i.e. 1234"
             android:ems="10"
-            android:id="@+id/editText_name_MA2"
+            android:id="@+id/MA_editText_password"
             />
     </TableLayout>
     <LinearLayout
@@ -78,16 +78,17 @@
             android:layout_height="wrap_content"
             android:textSize="12dp"
             android:text="Forgot password"
-            android:id="@+id/btn_forgotpassword_MA"
+            android:id="@+id/MA_forgotpassword_button"
             android:backgroundTint="#0FFF"
             />
+
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Register"
             android:textSize="12dp"
-            android:id="@+id/btn_register_MA"
+            android:id="@+id/MA_register_button"
             android:backgroundTint="#0FFF"
             />
     </LinearLayout>
