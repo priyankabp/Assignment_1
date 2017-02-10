@@ -12,8 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.assignment_1.RegistrationPage">
 
-
-    <EditText
+     <EditText
         android:id="@+id/Registration_UserName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -45,6 +44,14 @@
         android:layout_marginBottom="20sp"
         android:hint="Enter your MSU email" />
 
+    <EditText
+        android:id="@+id/Registration_DoB"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:focusable="false"
+        android:hint="Enter your DoB"/>
+
     <Space
         android:layout_width="fill_parent"
         android:layout_height="10dp" />
@@ -69,6 +76,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#0FFF"
         android:text="Register" />
+
 
 
 </LinearLayout>

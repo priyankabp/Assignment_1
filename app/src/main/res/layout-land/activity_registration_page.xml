@@ -50,6 +50,14 @@
             android:layout_marginBottom="20sp"
             android:hint="Enter your MSU email" />
 
+        <EditText
+            android:id="@+id/Registration_DoB"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20sp"
+            android:focusable="false"
+            android:hint="Enter your DoB" />
+
         <Space
             android:layout_width="fill_parent"
             android:layout_height="10dp" />
