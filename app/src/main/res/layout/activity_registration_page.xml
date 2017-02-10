@@ -13,46 +13,46 @@
     tools:context="com.example.android.assignment_1.RegistrationPage">
 
      <EditText
-        android:id="@+id/Registration_UserName"
+        android:id="@+id/Registration_userName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
          android:inputType="text"
-        android:hint="Enter a username" />
+        android:hint="@string/caption_hint_Registration_editText_userName" />
 
     <EditText
-        android:id="@+id/Registration_SName"
+        android:id="@+id/Registration_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp"
         android:inputType="text"
-        android:hint="Enter your name" />
+        android:hint="@string/caption_hint_Registration_editText_name" />
 
     <Space
         android:layout_width="fill_parent"
         android:layout_height="10dp" />
 
     <EditText
-        android:id="@+id/Registration_SMajor"
+        android:id="@+id/Registration_major"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
-        android:hint="Enter your major" />
+        android:hint="@string/caption_hint_Registration_editText_major" />
 
     <EditText
-        android:id="@+id/Registration_Email"
+        android:id="@+id/Registration_email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp"
         android:inputType="textWebEmailAddress"
-        android:hint="Enter your MSU email" />
+        android:hint="@string/caption_hint_Registration_editText_email" />
 
     <EditText
         android:id="@+id/Registration_DoB"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp"
-        android:hint="Enter your DOB"/>
+        android:hint="@string/caption_hint_Registration_editText_DoB"/>
 
     <Space
         android:layout_width="fill_parent"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
         android:inputType="textPassword"
-        android:hint="Enter your password" />
+        android:hint="@string/caption_hint_Registration_editText_password1" />
 
     <EditText
         android:id="@+id/Registration_password2"
@@ -72,14 +72,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="30sp"
         android:inputType="textPassword"
-        android:hint="Confirm  password" />
+        android:hint="@string/caption_hint_Registration_editText_password2" />
 
     <Button
         android:id="@+id/Registration_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#0FFF"
-        android:text="Register"
+        android:text="@string/caption_Registration_button"
         android:onClick="onRegisterClick"/>
 
 

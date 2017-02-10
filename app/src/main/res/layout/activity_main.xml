@@ -4,92 +4,89 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/new_background"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    android:background="@drawable/new_background"
     tools:context="com.example.android.assignment_1.MainActivity">
 
     <ImageView
         android:layout_width="177dp"
         android:layout_height="177dp"
-        android:background="@mipmap/ic_launcher"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:background="@mipmap/ic_launcher" />
 
     <TextView
+        android:id="@+id/MA_textView_welcomeToMsu"
         android:layout_width="wrap_content"
         android:layout_height="54dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="WELCOME TO MSU"
-        android:typeface="monospace"
+        android:layout_gravity="center"
         android:fontFamily="ON"
+        android:text="@string/caption_MA_textView_welcomeToMsu"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#009900"
-        android:layout_gravity="center"/>
+        android:typeface="monospace" />
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        >
+        android:gravity="center">
+
         <TextView
+            android:id="@+id/MA_textView_userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Username: "
-            android:id="@+id/MA_textview_name"
-            />
+            android:text="@string/caption_MA_textView_userName"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
+            android:id="@+id/MA_editText_userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Enter your username"
             android:ems="10"
-            android:id="@+id/MA_editText_name"
-            />
+            android:hint="@string/caption_hint_MA_editText_userName"
+            android:inputType="textPersonName" />
+
         <TextView
+            android:id="@+id/MA_textView_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Password: "
-            android:id="@+id/MA_textview_password"
-            />
+            android:text="@string/caption_MA_textView_password"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="i.e. 1234"
-            android:ems="10"
             android:id="@+id/MA_editText_password"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/caption_hint_MA_editText_password"
+            android:inputType="textPassword" />
     </TableLayout>
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="horizontal"
         android:gravity="bottom"
-        >
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textSize="12dp"
-            android:text="Forgot password"
-            android:id="@+id/MA_forgotpassword_button"
-            android:backgroundTint="#0FFF"
-            />
+        android:orientation="horizontal">
 
         <Button
+            android:id="@+id/MA_forgotPassword_button"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Register"
-            android:textSize="12dp"
-            android:id="@+id/MA_register_button"
+            android:layout_weight="1"
             android:backgroundTint="#0FFF"
-            />
+            android:text="@string/caption_MA_forgotPassword_button"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/MA_register_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#0FFF"
+            android:text="@string/caption_MA_register_button"
+            android:textSize="12dp" />
     </LinearLayout>
 </LinearLayout>

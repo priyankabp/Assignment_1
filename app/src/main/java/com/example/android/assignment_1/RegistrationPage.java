@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -53,8 +52,8 @@ public class RegistrationPage extends AppCompatActivity {
 
         String myFormat = "MM/dd/yy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(myFormat, Locale.US);
-        EditText datetext = (EditText) findViewById(R.id.Registration_DoB);
-        datetext.setText(simpleDateFormat.format(calendar.getTime()));
+        EditText dateText = (EditText) findViewById(R.id.Registration_DoB);
+        dateText.setText(simpleDateFormat.format(calendar.getTime()));
     }
 
 
