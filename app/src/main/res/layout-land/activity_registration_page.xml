@@ -55,8 +55,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp"
-            android:focusable="false"
-            android:hint="Enter your DoB" />
+            android:hint="Enter your DOB" />
 
         <Space
             android:layout_width="fill_parent"
