@@ -32,12 +32,18 @@
         android:layout_width="fill_parent"
         android:layout_height="10dp" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/Registration_major"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
-        android:hint="@string/caption_hint_Registration_editText_major" />
+        android:hint="@string/caption_hint_Registration_editText_major" />-->
+
+    <Spinner
+        android:id="@+id/Registration_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
 
     <EditText
         android:id="@+id/Registration_email"

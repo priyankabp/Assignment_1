@@ -24,4 +24,8 @@
     <string name="caption_hint_Registration_editText_password1">Enter your password</string>
     <string name="caption_hint_Registration_editText_password2">Confirm  password</string>
     <string name="caption_Registration_button">Register</string>
+
+
+    <color name="white">#FFFFFF</color>
+
 </resources>

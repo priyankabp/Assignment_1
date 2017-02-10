@@ -19,14 +19,14 @@
 
 
         <EditText
-            android:id="@+id/Registration_UserName"
+            android:id="@+id/Registration_userName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15sp"
             android:hint="@string/caption_hint_Registration_editText_userName" />
 
         <EditText
-            android:id="@+id/Registration_SName"
+            android:id="@+id/Registration_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp"
@@ -37,14 +37,14 @@
             android:layout_height="10dp" />
 
         <EditText
-            android:id="@+id/Registration_SMajor"
+            android:id="@+id/Registration_major"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15sp"
             android:hint="@string/caption_hint_Registration_editText_major" />
 
         <EditText
-            android:id="@+id/Registration_Email"
+            android:id="@+id/Registration_email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp"

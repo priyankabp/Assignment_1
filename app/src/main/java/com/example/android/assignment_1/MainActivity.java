@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.MA_forgotpassword_button).setOnClickListener(new MyLsnr());
+        findViewById(R.id.MA_forgotPassword_button).setOnClickListener(new MyLsnr());
         findViewById(R.id.MA_register_button).setOnClickListener(new MyLsnr());
 
     }
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.MA_forgotpassword_button) {
+            if (view.getId() == R.id.MA_forgotPassword_button) {
                 Intent intent = new Intent(MainActivity.this, ForgotPasswordPage.class);
                 startActivity(intent);
             } else if (view.getId() == R.id.MA_register_button) {
