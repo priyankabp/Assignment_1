@@ -2,8 +2,8 @@
     <string name="app_name">Assignment_1</string>
 
     <string name="caption_forgotPassword_textView">Password recovery</string>
-    <string name="caption_forgotPassword_username">Username</string>
-    <string name="caption_forgotPassword_email">Email</string>
+    <string name="caption_hint_forgotPassword_username">Username</string>
+    <string name="caption_hint_forgotPassword_email">Email</string>
     <string name="caption_forgotPassword_submit_button">Submit</string>
 
     <string name="caption_landing_screen_textView">This account is for</string>
@@ -18,7 +18,7 @@
 
     <string name="caption_hint_Registration_editText_userName">Enter a username</string>
     <string name="caption_hint_Registration_editText_name">Enter your name</string>
-    <string name="caption_hint_Registration_editText_major">Enter your major</string>
+    <string name="caption_Registration_textView_major">Select your major</string>
     <string name="caption_hint_Registration_editText_email">Enter your MSU email</string>
     <string name="caption_hint_Registration_editText_DoB">Enter your DOB</string>
     <string name="caption_hint_Registration_editText_password1">Enter your password</string>
@@ -27,5 +27,18 @@
 
 
     <color name="white">#FFFFFF</color>
+
+    <string-array name="major_array">
+        <item>Accounting Major</item>
+        <item>Chemistry Major</item>
+        <item>Computer Science Major</item>
+        <item>Information Technology Major</item>
+        <item>Information Systems Major</item>
+        <item>Electronics Major</item>
+        <item>Marine Biology and Coastal Sciences Major</item>
+        <item>Mathematics Major</item>
+        <item>Physics Major</item>
+        <item>Sustainability Science Major</item>
+    </string-array>
 
 </resources>

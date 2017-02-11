@@ -15,9 +15,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ForgotPasswordPage"></activity>
-        <activity android:name=".RegistrationPage"></activity>
-        <activity android:name=".LandingScreen"></activity>
+        <activity android:name=".ForgotPasswordPage"
+                  android:label="Forgot Password">
+        </activity>
+        <activity android:name=".RegistrationPage"
+                  android:label="Register">
+        </activity>
+        <activity android:name=".LandingScreen"
+                  android:label="Welcome!">
+        </activity>
     </application>
 
 </manifest>
