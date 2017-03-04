@@ -12,6 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.assignment_1.MainActivity">
 
+
     <ImageView
         android:layout_width="177dp"
         android:layout_height="177dp"
@@ -29,55 +30,20 @@
         android:textColor="#009900"
         android:typeface="monospace" />
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/MA_textView_userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/caption_MA_textView_userName"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <EditText
-            android:id="@+id/MA_editText_userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/caption_hint_MA_editText_userName"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/MA_textView_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/caption_MA_textView_password"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <EditText
-            android:id="@+id/MA_editText_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/caption_hint_MA_editText_password"
-            android:inputType="textPassword" />
-    </TableLayout>
-
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="bottom"
         android:orientation="horizontal">
 
+
         <Button
-            android:id="@+id/MA_forgotPassword_button"
+            android:id="@+id/MA_signIn_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#0FFF"
-            android:text="@string/caption_MA_forgotPassword_button"
+            android:text="@string/caption_MA_signIn_button"
             android:textSize="12dp" />
 
         <Button
@@ -88,5 +54,6 @@
             android:backgroundTint="#0FFF"
             android:text="@string/caption_MA_register_button"
             android:textSize="12dp" />
+
     </LinearLayout>
 </LinearLayout>

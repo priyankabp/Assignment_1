@@ -15,15 +15,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ForgotPasswordPage"
-                  android:label="Forgot Password">
-        </activity>
-        <activity android:name=".RegistrationPage"
-                  android:label="Register">
-        </activity>
-        <activity android:name=".LandingScreen"
-                  android:label="Welcome!">
-        </activity>
+        <activity
+            android:name=".ForgotPasswordPage"
+            android:label="Forgot Password" />
+        <activity
+            android:name=".RegistrationPage"
+            android:label="Register" />
+        <activity
+            android:name=".LandingScreen"
+            android:label="Welcome!" />
+        <activity
+            android:name=".SignInPage"
+            android:label="Sign In" />
+        <activity android:name=".DisplayPassword"
+            android:label="Display Password"/>
     </application>
 
 </manifest>

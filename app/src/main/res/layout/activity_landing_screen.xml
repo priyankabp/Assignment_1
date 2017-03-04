@@ -8,19 +8,16 @@
     
     tools:context="com.example.android.assignment_1.LandingScreen">
 
-
-    <ImageView
-        android:id="@+id/landing_screen_imageView"
+    <TextView
+        android:id="@+id/text_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/welcome" />
-
+        android:layout_height="match_parent" />
     <TextView
         android:id="@+id/landing_screen_textView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/caption_landing_screen_textView"
+        android:textColor="@color/editorColorPrimary"
         android:textSize="20sp" />
 
 </RelativeLayout>

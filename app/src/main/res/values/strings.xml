@@ -1,32 +1,38 @@
 <resources>
-    <string name="app_name">Assignment_1</string>
-
-    <string name="caption_forgotPassword_textView">Password recovery</string>
-    <string name="caption_hint_forgotPassword_username">Username</string>
-    <string name="caption_hint_forgotPassword_email">Email</string>
-    <string name="caption_forgotPassword_submit_button">Submit</string>
-
-    <string name="caption_landing_screen_textView">This account is for</string>
+    <string name="app_name">MSU Enrollment</string>
 
     <string name="caption_MA_textView_welcomeToMsu">WELCOME TO MSU</string>
-    <string name="caption_MA_textView_userName">Username: </string>
-    <string name="caption_MA_textView_password">Password: </string>
-    <string name="caption_MA_forgotPassword_button">Forgot password</string>
-    <string name="caption_hint_MA_editText_userName">Enter your username</string>
-    <string name="caption_hint_MA_editText_password">i.e. 1234</string>
     <string name="caption_MA_register_button">Register</string>
+    <string name="caption_MA_signIn_button">Sign In</string>
 
-    <string name="caption_hint_Registration_editText_userName">Enter a username</string>
+    <string name="caption_hint_SignIn_editText_userName">Enter unique username</string>
+    <string name="caption_hint_SignIn_editText_password">example@1</string>
+    <string name="caption_SignIn_textView_userName">Username: </string>
+    <string name="caption_SignIn_textView_password">Password: </string>
+    <string name="caption_SignIn_forgotPassword_button">Forgot password?</string>
+    <string name="caption_SignIn_logIn_button">Log In</string>
+
+    <string name="caption_hint_Registration_editText_userName">Enter unique username</string>
     <string name="caption_hint_Registration_editText_name">Enter your name</string>
     <string name="caption_Registration_textView_major">Select your major</string>
-    <string name="caption_hint_Registration_editText_email">Enter your MSU email</string>
+    <string name="caption_hint_Registration_editText_email">example@montclair.edu</string>
     <string name="caption_hint_Registration_editText_DoB">Enter your DOB</string>
     <string name="caption_hint_Registration_editText_password1">Enter your password</string>
     <string name="caption_hint_Registration_editText_password2">Confirm  password</string>
     <string name="caption_Registration_button">Register</string>
 
+    <string name="caption_forgotPassword_textView">Password recovery</string>
+    <string name="caption_hint_forgotPassword_username">Username</string>
+    <string name="caption_hint_forgotPassword_email">example@montclair.edu</string>
+    <string name="caption_forgotPassword_submit_button">Submit</string>
+
+    <string name="caption_landing_screen_textView">This account is for</string>
+
+    <string name="caption_displayPassword_textView">Your password is :</string>
+
 
     <color name="white">#FFFFFF</color>
+
 
     <string-array name="major_array">
         <item>Accounting Major</item>

@@ -1,7 +1,7 @@
 /*
 * This is the Main Activity.
 * Allows User to login.
-* Provides navigation to Forgot Password Activity.
+* Provides navigation to Sign In Activity.
 * Provides navigation to Registration Activity.
 * */
 package com.example.android.assignment_1;
@@ -18,23 +18,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //finds ID of forgot password button for on click event.
-        findViewById(R.id.MA_forgotPassword_button).setOnClickListener(new MyLsnr());
+        //finds ID of signIn button for on click event.
+        findViewById(R.id.MA_signIn_button).setOnClickListener(new MyLsnr());
+
         //finds ID of register button for on click event.
         findViewById(R.id.MA_register_button).setOnClickListener(new MyLsnr());
 
     }
 
     /**
-     * MyLsnr controls the onClick event of Forgot Password button and Register button.
-      */
+     * MyLsnr controls the onClick event of SignIn button and Register button.
+     */
     class MyLsnr implements View.OnClickListener {
 
         @Override
         public void onClick(View view) {
-            //when Forgot Password is clicked,navigation from MainActivity to ForgotPassword Activity.
-            if (view.getId() == R.id.MA_forgotPassword_button) {
-                Intent intent = new Intent(MainActivity.this, ForgotPasswordPage.class);
+
+            //when Forgot Password is clicked,navigation from MainActivity to SignIn Activity.
+            if (view.getId() == R.id.MA_signIn_button) {
+                Intent intent = new Intent(MainActivity.this, SignInPage.class);
                 startActivity(intent);
             }
             //when Register is clicked,navigation from MainActivity to Registration Activity.

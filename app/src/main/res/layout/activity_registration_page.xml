@@ -24,7 +24,7 @@
         android:id="@+id/Registration_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:hint="@string/caption_hint_Registration_editText_name"
         android:inputType="text" />
 
@@ -42,12 +42,11 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
-
     <EditText
         android:id="@+id/Registration_email"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:hint="@string/caption_hint_Registration_editText_email"
         android:inputType="textEmailAddress" />
 
@@ -55,9 +54,8 @@
         android:id="@+id/Registration_DoB"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:hint="@string/caption_hint_Registration_editText_DoB" />
-
 
     <EditText
         android:id="@+id/Registration_password1"
@@ -71,7 +69,7 @@
         android:id="@+id/Registration_password2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         android:hint="@string/caption_hint_Registration_editText_password2"
         android:inputType="textPassword" />
 
@@ -82,6 +80,5 @@
         android:backgroundTint="#0FFF"
         android:onClick="onRegisterClick"
         android:text="@string/caption_Registration_button" />
-
 
 </LinearLayout>
