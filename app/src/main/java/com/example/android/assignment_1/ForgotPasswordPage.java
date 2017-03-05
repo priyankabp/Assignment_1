@@ -80,8 +80,8 @@ public class ForgotPasswordPage extends AppCompatActivity {
             //builds query to match the entered password and the stored password in the database with unique username
             Cursor cursor = db.query(StudentContract.StudentEntry.TABLE_NAME,
                     new String[]{StudentContract.StudentEntry.COLUMN_PASSWORD},
-                    " username = ?",
-                    new String[]{forgotPassword_Username},
+                    " username = ? AND msu_email = ?" ,
+                    new String[]{forgotPassword_Username,forgotPassword_email},
                     null,
                     null,
                     null,
@@ -99,7 +99,7 @@ public class ForgotPasswordPage extends AppCompatActivity {
                 // resources and makes it invalid.
                 cursor.close();
             } else {
-                Toast.makeText(ForgotPasswordPage.this, "User Name does not exist", Toast.LENGTH_LONG).show();
+                Toast.makeText(ForgotPasswordPage.this, "User not found", Toast.LENGTH_LONG).show();
                 // Always close the cursor when you're done reading from it. This releases all its
                 // resources and makes it invalid.
                 cursor.close();

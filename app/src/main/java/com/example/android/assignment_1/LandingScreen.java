@@ -10,6 +10,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,5 +79,8 @@ public class LandingScreen extends AppCompatActivity {
         //intent.putExtra(Utils.MSG_KEY_INTENT, "Update profile for " + logInUser + " !");
         intent.putExtra("signInUsername",logInUser);
         startActivity(intent);
+    }
+
+    public void onLogOutClick(View view) {
     }
 }

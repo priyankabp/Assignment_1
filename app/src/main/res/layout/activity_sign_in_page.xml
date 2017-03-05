@@ -5,67 +5,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="20dp"
     tools:context="com.example.android.assignment_1.SignInPage">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:orientation="horizontal">
 
+        <!-- Username Label -->
         <TextView
             android:id="@+id/SignIn_textView_userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/caption_SignIn_textView_userName"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            style="@style/CategoryStyle"
+            android:text="@string/caption_SignIn_textView_userName" />
 
-        <EditText
-            android:id="@+id/SignIn_editText_userName"
-            android:layout_width="match_parent"
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/caption_hint_SignIn_editText_userName"
-            android:inputType="textPersonName" />
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
 
+            <!-- UserName field -->
+            <EditText
+                android:id="@+id/SignIn_editText_userName"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_SignIn_editText_userName"
+                android:inputType="textCapWords" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Password Label -->
         <TextView
             android:id="@+id/SignIn_textView_password"
-            android:layout_width="wrap_content"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_SignIn_textView_password" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/caption_SignIn_textView_password"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
 
-        <EditText
-            android:id="@+id/SignIn_editText_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/caption_hint_SignIn_editText_password"
-            android:inputType="textPassword" />
+            <!-- Password field -->
+            <EditText
+                android:id="@+id/SignIn_editText_password"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_SignIn_editText_password"
+                android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/SignIn_button_linkToForgotPassword"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:background="@null"
-            android:text="@string/caption_SignIn_forgotPassword_button"
-            android:textAllCaps="false"
-            android:textColor="@color/editorColorPrimary"
-            android:textSize="15dp"
-            android:onClick="onForgotPasswordClick"/>
-
-
-        <Button
-            android:id="@+id/SignIn_button_logIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onLogInClick"
-            android:text="@string/caption_SignIn_logIn_button" />
-
+        </LinearLayout>
     </LinearLayout>
+
+
+    <Button
+        android:id="@+id/SignIn_button_linkToForgotPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dip"
+        android:background="@null"
+        android:onClick="onForgotPasswordClick"
+        android:text="@string/caption_SignIn_forgotPassword_button"
+        android:textAllCaps="false"
+        android:textColor="@color/editorColorPrimary"
+        android:textSize="15dp" />
+
+
+    <Button
+        android:id="@+id/SignIn_button_logIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onLogInClick"
+        android:text="@string/caption_SignIn_logIn_button" />
+
 
 </LinearLayout>

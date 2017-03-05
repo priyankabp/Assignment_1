@@ -12,56 +12,140 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.assignment_1.RegistrationPage">
 
-    <TextView
-        android:id="@+id/EditProfile_userName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="2dp"
-        android:layout_marginBottom="15dp"
-        android:textSize="17dp"
-        android:textStyle="bold"/>
-
-    <EditText
-        android:id="@+id/EditProfile_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/caption_hint_EditProfile_editText_name"
-        android:inputType="text" />
-
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="2dp"
-        android:text="@string/caption_EditProfile_textView_major"
-        android:textSize="17dp" />
+        android:orientation="horizontal">
 
-    <Spinner
-        android:id="@+id/EditProfile_spinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        <!-- Username Label -->
+        <TextView
+            android:id="@+id/EditProfile_userName"
+            style="@style/CategoryStyle"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
 
-    <EditText
-        android:id="@+id/EditProfile_email"
-        android:layout_width="fill_parent"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/caption_hint_EditProfile_editText_email"
-        android:inputType="textEmailAddress" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/EditProfile_DoB"
-        android:layout_width="fill_parent"
+        <!-- Name Label -->
+        <TextView
+            android:id="@+id/EditProfile_textView_Name"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_EditProfile_textView_name" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
+
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/EditProfile_name"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_EditProfile_editText_userName"
+                android:inputType="text" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_gender"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/caption_hint_EditProfile_editText_DoB" />
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/caption_EditProfile_textView_major"
+            style="@style/CategoryStyle" />
+
+        <!-- Input field -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <!-- Major drop-down spinner -->
+            <Spinner
+                android:id="@+id/EditProfile_spinner"
+                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Email Label -->
+        <TextView
+            android:id="@+id/EditProfile_textView_email"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_EditProfile_textView_email" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
+
+            <!-- Email field -->
+            <EditText
+                android:id="@+id/EditProfile_email"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_Registration_editText_email"
+                android:inputType="textEmailAddress" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- DOB Label -->
+        <TextView
+            android:id="@+id/EditProfile_textView_dob"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_EditProfile_textView_dob" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
+
+            <!-- DOB field -->
+            <EditText
+                android:id="@+id/EditProfile_DoB"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_EditProfile_editText_DoB"
+                android:inputType="textEmailAddress" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/EditProfile_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:backgroundTint="#0FFF"
         android:onClick="onUpdateClick"
         android:text="@string/caption_EditProfile_button" />

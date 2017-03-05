@@ -24,26 +24,10 @@
 
             <!-- Username Label -->
             <TextView
-                android:id="@+id/Registration_textView_userName"
+                android:id="@+id/EditProfile_userName"
                 style="@style/CategoryStyle"
-                android:text="@string/caption_Registration_textView_userName" />
+                android:textStyle="bold" />
 
-            <!-- Input fields -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:orientation="vertical"
-                android:paddingLeft="0dp">
-
-                <!-- UserName field -->
-                <EditText
-                    android:id="@+id/Registration_userName"
-                    style="@style/EditorFieldStyle"
-                    android:hint="@string/caption_hint_Registration_editText_userName"
-                    android:inputType="text" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -53,9 +37,9 @@
 
             <!-- Name Label -->
             <TextView
-                android:id="@+id/Registration_textView_Name"
+                android:id="@+id/EditProfile_textView_Name"
                 style="@style/CategoryStyle"
-                android:text="@string/caption_Registration_textView_name" />
+                android:text="@string/caption_EditProfile_textView_name" />
 
             <!-- Input fields -->
             <LinearLayout
@@ -67,9 +51,9 @@
 
                 <!-- Name field -->
                 <EditText
-                    android:id="@+id/Registration_name"
+                    android:id="@+id/EditProfile_name"
                     style="@style/EditorFieldStyle"
-                    android:hint="@string/caption_hint_Registration_editText_userName"
+                    android:hint="@string/caption_hint_EditProfile_editText_userName"
                     android:inputType="text" />
 
             </LinearLayout>
@@ -83,7 +67,7 @@
 
             <!-- Label -->
             <TextView
-                android:text="@string/caption_Registration_textView_major"
+                android:text="@string/caption_EditProfile_textView_major"
                 style="@style/CategoryStyle" />
 
             <!-- Input field -->
@@ -95,7 +79,7 @@
 
                 <!-- Major drop-down spinner -->
                 <Spinner
-                    android:id="@+id/Registration_spinner"
+                    android:id="@+id/EditProfile_spinner"
                     android:layout_height="48dp"
                     android:layout_width="wrap_content"
                     android:paddingRight="16dp"
@@ -110,9 +94,9 @@
 
             <!-- Email Label -->
             <TextView
-                android:id="@+id/Regisration_textView_email"
+                android:id="@+id/EditProfile_textView_email"
                 style="@style/CategoryStyle"
-                android:text="@string/caption_Registration_textView_email" />
+                android:text="@string/caption_EditProfile_textView_email" />
 
             <!-- Input fields -->
             <LinearLayout
@@ -124,7 +108,7 @@
 
                 <!-- Email field -->
                 <EditText
-                    android:id="@+id/Registration_email"
+                    android:id="@+id/EditProfile_email"
                     style="@style/EditorFieldStyle"
                     android:hint="@string/caption_hint_Registration_editText_email"
                     android:inputType="textEmailAddress" />
@@ -139,9 +123,9 @@
 
             <!-- DOB Label -->
             <TextView
-                android:id="@+id/Regisration_textView_dob"
+                android:id="@+id/EditProfile_textView_dob"
                 style="@style/CategoryStyle"
-                android:text="@string/caption_Registration_textView_dob" />
+                android:text="@string/caption_EditProfile_textView_dob" />
 
             <!-- Input fields -->
             <LinearLayout
@@ -153,81 +137,22 @@
 
                 <!-- DOB field -->
                 <EditText
-                    android:id="@+id/Registration_DoB"
+                    android:id="@+id/EditProfile_DoB"
                     style="@style/EditorFieldStyle"
-                    android:hint="@string/caption_hint_Registration_editText_DoB"
+                    android:hint="@string/caption_hint_EditProfile_editText_DoB"
                     android:inputType="textEmailAddress" />
 
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!-- DOB Label -->
-            <TextView
-                android:id="@+id/Regisration_textView_password1"
-                style="@style/CategoryStyle"
-                android:text="@string/caption_Registration_textView_password1" />
-
-            <!-- Input fields -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:orientation="vertical"
-                android:paddingLeft="0dp">
-
-                <!-- DOB field -->
-                <EditText
-                    android:id="@+id/Registration_password1"
-                    style="@style/EditorFieldStyle"
-                    android:hint="@string/caption_hint_Registration_editText_password1"
-                    android:inputType="textPassword" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!-- DOB Label -->
-            <TextView
-                android:id="@+id/Regisration_textView_password2"
-                style="@style/CategoryStyle"
-                android:text="@string/caption_Registration_textView_password2" />
-
-            <!-- Input fields -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:orientation="vertical"
-                android:paddingLeft="0dp">
-
-                <!-- DOB field -->
-                <EditText
-                    android:id="@+id/Registration_password2"
-                    style="@style/EditorFieldStyle"
-                    android:hint="@string/caption_hint_Registration_editText_password2"
-                    android:inputType="textPassword" />
-
-            </LinearLayout>
-        </LinearLayout>
-
         <Button
-            android:id="@+id/Registration_button"
+            android:id="@+id/EditProfile_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:backgroundTint="#0FFF"
-            android:onClick="onRegisterClick"
-            android:text="@string/caption_Registration_button" />
-
+            android:onClick="onUpdateClick"
+            android:text="@string/caption_EditProfile_button" />
     </LinearLayout>
 
 

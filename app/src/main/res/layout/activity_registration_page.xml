@@ -12,71 +12,213 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.assignment_1.RegistrationPage">
 
-    <EditText
-        android:id="@+id/Registration_userName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/caption_hint_Registration_editText_userName"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/Registration_name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/caption_hint_Registration_editText_name"
-        android:inputType="text" />
-
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="2dp"
-        android:text="@string/caption_Registration_textView_major"
-        android:textSize="17dp" />
+        android:orientation="horizontal">
 
-    <Spinner
-        android:id="@+id/Registration_spinner"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        <!-- Username Label -->
+        <TextView
+            android:id="@+id/Registration_textView_userName"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_Registration_textView_userName" />
 
-    <EditText
-        android:id="@+id/Registration_email"
-        android:layout_width="fill_parent"
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
+
+            <!-- UserName field -->
+            <EditText
+                android:id="@+id/Registration_userName"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_Registration_editText_userName"
+                android:inputType="text" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/caption_hint_Registration_editText_email"
-        android:inputType="textEmailAddress" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/Registration_DoB"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/caption_hint_Registration_editText_DoB" />
+        <!-- Name Label -->
+        <TextView
+            android:id="@+id/SignIn_textView_userName"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_Registration_textView_name" />
 
-    <EditText
-        android:id="@+id/Registration_password1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/caption_hint_Registration_editText_password1"
-        android:inputType="textPassword" />
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
 
-    <EditText
-        android:id="@+id/Registration_password2"
-        android:layout_width="fill_parent"
+            <!-- Name field -->
+            <EditText
+                android:id="@+id/Registration_name"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_Registration_editText_userName"
+                android:inputType="text" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_gender"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="@string/caption_hint_Registration_editText_password2"
-        android:inputType="textPassword" />
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/caption_Registration_textView_major"
+            style="@style/CategoryStyle" />
+
+        <!-- Input field -->
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <!-- Major drop-down spinner -->
+            <Spinner
+                android:id="@+id/Registration_spinner"
+                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Email Label -->
+        <TextView
+            android:id="@+id/Regisration_textView_email"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_Registration_textView_email" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
+
+            <!-- Email field -->
+            <EditText
+                android:id="@+id/Registration_email"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_Registration_editText_email"
+                android:inputType="textEmailAddress" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- DOB Label -->
+        <TextView
+            android:id="@+id/Regisration_textView_dob"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_Registration_textView_dob" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
+
+            <!-- DOB field -->
+            <EditText
+                android:id="@+id/Registration_DoB"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_Registration_editText_DoB"
+                android:inputType="textEmailAddress" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- DOB Label -->
+        <TextView
+            android:id="@+id/Regisration_textView_password1"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_Registration_textView_password1" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
+
+            <!-- DOB field -->
+            <EditText
+                android:id="@+id/Registration_password1"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_Registration_editText_password1"
+                android:inputType="textPassword" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- DOB Label -->
+        <TextView
+            android:id="@+id/Regisration_textView_password2"
+            style="@style/CategoryStyle"
+            android:text="@string/caption_Registration_textView_password2" />
+
+        <!-- Input fields -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:paddingLeft="0dp">
+
+            <!-- DOB field -->
+            <EditText
+                android:id="@+id/Registration_password2"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/caption_hint_Registration_editText_password2"
+                android:inputType="textPassword" />
+
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/Registration_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#0FFF"
         android:onClick="onRegisterClick"
         android:text="@string/caption_Registration_button" />

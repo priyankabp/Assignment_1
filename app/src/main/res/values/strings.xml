@@ -12,19 +12,28 @@
     <string name="caption_SignIn_forgotPassword_button">Forgot password?</string>
     <string name="caption_SignIn_logIn_button">Log In</string>
 
+
+    <string name="caption_Registration_textView_userName">Username</string>
     <string name="caption_hint_Registration_editText_userName">Enter unique username</string>
+    <string name="caption_Registration_textView_name">Name</string>
     <string name="caption_hint_Registration_editText_name">Enter your name</string>
-    <string name="caption_Registration_textView_major">Select your major</string>
+    <string name="caption_Registration_textView_major">Major</string>
     <string name="caption_hint_Registration_editText_email">example@montclair.edu</string>
     <string name="caption_hint_Registration_editText_DoB">Enter your DOB</string>
     <string name="caption_hint_Registration_editText_password1">Enter your password</string>
     <string name="caption_hint_Registration_editText_password2">Confirm  password</string>
     <string name="caption_Registration_button">Register</string>
+    <string name="caption_Registration_textView_email">Email</string>
+    <string name="caption_Registration_textView_dob">DOB</string>
+    <string name="caption_Registration_textView_password1">Password</string>
+    <string name="caption_Registration_textView_password2">Confirm Password</string>
 
     <string name="caption_forgotPassword_textView">Password recovery</string>
     <string name="caption_hint_forgotPassword_username">Username</string>
     <string name="caption_hint_forgotPassword_email">example@montclair.edu</string>
     <string name="caption_forgotPassword_submit_button">Submit</string>
+    <string name="caption_forgotPassword_textView_userName">Username</string>
+    <string name="caption_forgotPassword_textView_email">Email</string>
 
     <string name="caption_landing_screen_textView">This account is for</string>
 
@@ -33,8 +42,14 @@
     <string name="caption_EditProfile_button">Update</string>
     <string name="caption_hint_EditProfile_editText_DoB">Update your dob</string>
     <string name="caption_hint_EditProfile_editText_email">Update msu email</string>
-    <string name="caption_EditProfile_textView_major">Update your major</string>
+    <string name="caption_EditProfile_textView_major">Major</string>
     <string name="caption_hint_EditProfile_editText_name">Update your name</string>
+    <string name="caption_EditProfile_textView_name">Name</string>
+    <string name="caption_hint_EditProfile_editText_userName">Enter new name</string>
+    <string name="caption_EditProfile_textView_email">Email</string>
+    <string name="caption_EditProfile_textView_dob">DOB</string>
+
+    <string name="log_out">Log Out</string>
 
 
     <color name="white">#FFFFFF</color>
@@ -55,6 +70,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+
 
 
 </resources>
