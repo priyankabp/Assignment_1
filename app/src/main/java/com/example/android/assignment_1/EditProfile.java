@@ -1,9 +1,14 @@
 package com.example.android.assignment_1;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,35 +18,47 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.assignment_1.utils.StudentContract;
+import com.example.android.assignment_1.utils.StudentContract.*;
 import com.example.android.assignment_1.utils.StudentDbHelper;
+import com.example.android.assignment_1.utils.Utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
+
+import static android.R.attr.id;
+import static android.R.attr.name;
+import static org.xmlpull.v1.XmlPullParser.TYPES;
 
 public class EditProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private StudentDbHelper dbHelper;
     Calendar calendar = Calendar.getInstance();
-    //private TextView editProfile_textView;
+    private TextView editProfile_textView;
     private String logInUser;
+    private Spinner spinner;
+    private EditText dateText;
+    private EditText editName;
+    private EditText editEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        dbHelper = new StudentDbHelper(this);
 
         Intent in = getIntent();
         Bundle bu = in.getExtras();
         logInUser = bu.getString("signInUsername");
-        Toast.makeText(this, logInUser, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, logInUser, Toast.LENGTH_LONG).show();
 
-        //Sets the registered username.
-        TextView editProfile_textView = (TextView) findViewById(R.id.EditProfile_userName);
-        editProfile_textView.setText(logInUser);
-
+        editProfile_textView = (TextView) findViewById(R.id.EditProfile_userName);
+        editName = (EditText) findViewById(R.id.EditProfile_name);
+        editEmail = (EditText) findViewById(R.id.EditProfile_email);
         // Spinner element in the registration activity.
-        Spinner spinner = (Spinner) findViewById(R.id.EditProfile_spinner);
+        spinner = (Spinner) findViewById(R.id.EditProfile_spinner);
 
         // Spinner click listener for selected item.
         spinner.setOnItemSelectedListener(EditProfile.this);
@@ -54,8 +71,9 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
 
+
         // when double-clicked on editText of DoB the calender pop-up comes.
-        EditText dateText = (EditText) findViewById(R.id.EditProfile_DoB);
+        dateText = (EditText) findViewById(R.id.EditProfile_DoB);
         dateText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +82,47 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
             }
         });
 
-        dbHelper = new StudentDbHelper(this);
+        displayUserDetails(logInUser);
+
+    }
+
+    private void displayUserDetails(String logInUser) {
+
+        //Sets the registered username.
+
+        editProfile_textView.setText("Username: "+logInUser);
+
+        // Create and/or open a database to read from it
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        //builds query to match the entered password and the stored password in the database with unique username
+        Cursor cursor = db.query(StudentEntry.TABLE_NAME,
+                new String[]{StudentEntry.COLUMN_NAME,
+                        StudentEntry.COLUMN_MSU_EMAIL,
+                        StudentEntry.COLUMN_MAJOR,
+                        StudentEntry.COLUMN_DATE_OF_BIRTH},
+                " username = ?",
+                new String[]{logInUser},
+                null,
+                null,
+                null,
+                null);
+
+        //after receiving the result of the query moves the cursor to first row of the result and checks that received data
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            editName.setText(cursor.getString(0));
+            editEmail.setText(cursor.getString(1));
+
+            String[] majorArray =  getResources().getStringArray(R.array.major_array);
+            Integer position = Arrays.asList(majorArray).indexOf(cursor.getString(2));
+            spinner.setSelection(position);
+
+            dateText.setText(cursor.getString(3));
+        }
+        cursor.close();
+        db.close();
     }
 
     //Allows to select the DoB to user from calender and update it on the field.
@@ -89,7 +147,6 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
         String myFormat = "MM/dd/yy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(myFormat, Locale.US);
-        EditText dateText = (EditText) findViewById(R.id.EditProfile_DoB);
         dateText.setText(simpleDateFormat.format(calendar.getTime()));
     }
 
@@ -100,6 +157,66 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    public boolean verifyData(String nameStr, String emailStr, String doBStr){
+        Boolean isValid = true;
+
+        // Name validation
+        if (TextUtils.isEmpty(nameStr)) {
+            editName.setError("Please enter your name");
+            isValid = false;
+        }
+
+        // Email validation specific for montclair.edu
+        String emailPattern = "[a-zA-Z0-9._-]+@[m,o,n,t,c,l,a,i,r]+\\.+[e,d,u]+";
+        if (TextUtils.isEmpty(emailStr) || !(emailStr.matches(emailPattern))) {
+            editEmail.setError("Email ID must contain montclair.edu");
+            isValid = false;
+        }
+
+        // DoB validation
+        if (TextUtils.isEmpty(doBStr)) {
+            dateText.setError("Please select your date of birth");
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    public void updateUserDetails(String userNameStr, String nameStr, String majorStr, String emailStr, String dobStr){
+        // Gets the database in write mode
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(StudentEntry.COLUMN_NAME, nameStr);
+        values.put(StudentEntry.COLUMN_MAJOR, majorStr);
+        values.put(StudentEntry.COLUMN_MSU_EMAIL, emailStr);
+        values.put(StudentEntry.COLUMN_DATE_OF_BIRTH, dobStr);
+
+        db.update(StudentEntry.TABLE_NAME, values, "username=?", new String[]{userNameStr});
+
+        db.close();
+    }
+
+    public void onUpdateClick(View view) {
+        String userNameStr = logInUser;
+        String nameStr = editName.getText().toString().trim();
+
+        String majorStr = spinner.getSelectedItem().toString();
+        String emailStr = editEmail.getText().toString().trim();
+        String dobStr = dateText.getText().toString().trim();
+
+        if(verifyData(nameStr, emailStr, dobStr)){
+            updateUserDetails(userNameStr, nameStr, majorStr, emailStr, dobStr);
+
+            Toast.makeText(this, "Values updated", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, LandingScreen.class);
+            //intent.putExtra(Utils.MSG_KEY_INTENT, "Update profile for " + logInUser + " !");
+            intent.putExtra("signInUsername",logInUser);
+            startActivity(intent);
+        }
 
     }
 }

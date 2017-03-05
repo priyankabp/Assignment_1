@@ -27,18 +27,16 @@ public class LandingScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_screen);
 
-
         Intent in = getIntent();
         Bundle bu = in.getExtras();
         logInUser = bu.getString("signInUsername");
 
         //Sets the registered username.
         textView = (TextView) findViewById(R.id.landing_screen_textView);
-        textView.setText(logInUser);
+        textView.setText("Logged in user: "+logInUser);
 
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -75,7 +73,7 @@ public class LandingScreen extends AppCompatActivity {
     }
 
     public void onEditProfileClick(MenuItem item) {
-        Toast.makeText(this, logInUser, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, logInUser, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(LandingScreen.this, EditProfile.class);
         //intent.putExtra(Utils.MSG_KEY_INTENT, "Update profile for " + logInUser + " !");
         intent.putExtra("signInUsername",logInUser);
