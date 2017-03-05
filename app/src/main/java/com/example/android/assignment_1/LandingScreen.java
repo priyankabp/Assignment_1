@@ -4,13 +4,14 @@
 * */
 package com.example.android.assignment_1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 import com.example.android.assignment_1.utils.Utils;
 
@@ -18,6 +19,7 @@ import com.example.android.assignment_1.utils.Utils;
 public class LandingScreen extends AppCompatActivity {
 
     private TextView textView;
+    private String logInUser;
 
     //onCreate method for Landing screen Activity.
     @Override
@@ -25,9 +27,14 @@ public class LandingScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_screen);
 
+
+        Intent in = getIntent();
+        Bundle bu = in.getExtras();
+        logInUser = bu.getString("signInUsername");
+
         //Sets the registered username.
         textView = (TextView) findViewById(R.id.landing_screen_textView);
-        textView.setText(getIntent().getStringExtra(Utils.MSG_KEY_INTENT));
+        textView.setText(logInUser);
 
 
     }
@@ -60,5 +67,18 @@ public class LandingScreen extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onAddNoteClick(MenuItem item) {
+        Intent intent = new Intent(LandingScreen.this, AddNote.class);
+        startActivity(intent);
+    }
+
+    public void onEditProfileClick(MenuItem item) {
+        Toast.makeText(this, logInUser, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(LandingScreen.this, EditProfile.class);
+        //intent.putExtra(Utils.MSG_KEY_INTENT, "Update profile for " + logInUser + " !");
+        intent.putExtra("signInUsername",logInUser);
+        startActivity(intent);
     }
 }

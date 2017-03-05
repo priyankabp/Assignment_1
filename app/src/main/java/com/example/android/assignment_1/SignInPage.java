@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -78,8 +79,10 @@ public class SignInPage extends AppCompatActivity {
                 if (signInPassword.equals(cursor.getString(0))) {
                     Intent intent = new Intent(SignInPage.this, LandingScreen.class);
                     Toast.makeText(SignInPage.this, "Congrats: Login Successful", Toast.LENGTH_SHORT).show();
-                    intent.putExtra(Utils.MSG_KEY_INTENT, "This account is for " + signInUsername + " !");
+                    //intent.putExtra(Utils.MSG_KEY_INTENT, "This account is for " + signInUsername + " !");
+                    intent.putExtra("signInUsername",signInUsername);
                     startActivity(intent);
+
                     // Always close the cursor when you're done reading from it. This releases all its
                     // resources and makes it invalid.
                     cursor.close();

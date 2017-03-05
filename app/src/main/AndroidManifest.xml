@@ -27,8 +27,12 @@
         <activity
             android:name=".SignInPage"
             android:label="Sign In" />
-        <activity android:name=".DisplayPassword"
-            android:label="Display Password"/>
+        <activity
+            android:name=".DisplayPassword"
+            android:label="Display Password" />
+        <activity android:name=".AddNote" />
+        <activity android:name=".AddNote2" />
+        <activity android:name=".EditProfile"></activity>
     </application>
 
 </manifest>

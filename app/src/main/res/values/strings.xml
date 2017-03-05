@@ -30,6 +30,12 @@
 
     <string name="caption_displayPassword_textView">Your password is :</string>
 
+    <string name="caption_EditProfile_button">Update</string>
+    <string name="caption_hint_EditProfile_editText_DoB">Update your dob</string>
+    <string name="caption_hint_EditProfile_editText_email">Update msu email</string>
+    <string name="caption_EditProfile_textView_major">Update your major</string>
+    <string name="caption_hint_EditProfile_editText_name">Update your name</string>
+
 
     <color name="white">#FFFFFF</color>
 
@@ -46,5 +52,9 @@
         <item>Physics Major</item>
         <item>Sustainability Science Major</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

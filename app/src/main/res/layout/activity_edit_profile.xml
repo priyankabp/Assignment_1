@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/new_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.android.assignment_1.RegistrationPage">
+
+    <TextView
+        android:id="@+id/EditProfile_userName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="17dp"/>
+
+    <EditText
+        android:id="@+id/EditProfile_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:hint="@string/caption_hint_EditProfile_editText_name"
+        android:inputType="text" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="2dp"
+        android:text="@string/caption_EditProfile_textView_major"
+        android:textSize="17dp" />
+
+    <Spinner
+        android:id="@+id/EditProfile_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/EditProfile_email"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:hint="@string/caption_hint_EditProfile_editText_email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/EditProfile_DoB"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:hint="@string/caption_hint_EditProfile_editText_DoB" />
+
+    <Button
+        android:id="@+id/EditProfile_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0FFF"
+        android:onClick="onUpdateClick"
+        android:text="@string/caption_EditProfile_button" />
+
+</LinearLayout>
