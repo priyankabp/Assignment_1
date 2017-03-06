@@ -17,7 +17,11 @@ import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,15 +87,21 @@ public class AddNote extends AppCompatActivity implements TitlesFragment.OnFragm
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
-                            addNote_textView.setText(noteTitle.getText());
+                            //addNote_textView.setText(noteTitle.getText());
 
                             //Using Files
                             try {
                                 FileOutputStream outputStream = openFileOutput(noteTitle.getText().toString(), MODE_APPEND);
+                                String currentDateTimeStr = DateFormat.getDateTimeInstance().format(new Date());
+                                String name = "Name: " + logInUser + "\n" ;
+                                outputStream.write(name.getBytes());
+                                String time = "Time: " + currentDateTimeStr + "\n\n" ;
+                                outputStream.write(time.getBytes());
                                 outputStream.write(noteBody.getText().toString().getBytes());
                                 outputStream.close();
                                 Snackbar.make(thisView, "File Saved", Snackbar.LENGTH_SHORT).show();
                                 activityTracker.updateActivity(logInUser+" added note" + noteTitle.getText().toString());
+
                             } catch (Exception e) {
                                 Log.e("ERROR", e.getMessage());
                             }
