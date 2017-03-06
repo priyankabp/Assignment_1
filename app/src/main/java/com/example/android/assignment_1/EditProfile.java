@@ -30,6 +30,7 @@ import java.util.Locale;
 
 import static android.R.attr.id;
 import static android.R.attr.name;
+import static android.view.View.Z;
 import static org.xmlpull.v1.XmlPullParser.TYPES;
 
 public class EditProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -180,7 +181,8 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         }
 
         // Email validation specific for montclair.edu
-        String emailPattern = "[a-zA-Z0-9._-]+@[m,o,n,t,c,l,a,i,r]+\\.+[e,d,u]+";
+        //String regex = "/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(domain|domain2)\.com$/"
+        String emailPattern = "[a-zA-Z0-9._-]+@(montclair)\\.edu";
         if (TextUtils.isEmpty(emailStr) || !(emailStr.matches(emailPattern))) {
             editEmail.setError("Email ID must contain montclair.edu");
             isValid = false;
@@ -225,8 +227,6 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
             activityTracker.updateActivity(logInUser+" updated profile!");
             Intent intent = new Intent(this, LandingScreen.class);
-            //intent.putExtra(Utils.MSG_KEY_INTENT, "Update profile for " + logInUser + " !");
-            //intent.putExtra("signInUsername",logInUser);
             startActivity(intent);
         }
 

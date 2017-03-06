@@ -7,14 +7,15 @@ package com.example.android.assignment_1;
 
 import java.util.Calendar;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -25,13 +26,12 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+
 import android.widget.AdapterView.OnItemSelectedListener;
 
 
 import com.example.android.assignment_1.utils.StudentContract.StudentEntry;
 import com.example.android.assignment_1.utils.StudentDbHelper;
-import com.example.android.assignment_1.utils.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -137,7 +137,7 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
         }
 
         // Email validation specific for montclair.edu
-        String emailPattern = "[a-zA-Z0-9._-]+@[m,o,n,t,c,l,a,i,r]+\\.+[e,d,u]+";
+        String emailPattern = "[a-zA-Z0-9._-]+@(montclair)\\.edu";
         if (TextUtils.isEmpty(regEmailStr) || !(regEmailStr.matches(emailPattern))) {
             regEmail.setError("Email ID must contain montclair.edu");
             isValid = false;
@@ -227,26 +227,36 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
 
                 //after receiving the result of the query moves the cursor to first row of the result and checks the received data
                 if (verifyUserExist(regUsernameStr)) {
-                        Toast.makeText(RegistrationPage.this, "Username already exits", Toast.LENGTH_LONG).show();
-                        // Always close the cursor when you're done reading from it. This releases all its
-                        // resources and makes it invalid.
+                    AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                    alertDialog.setMessage("Username already exits!");
+                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,"Ok",new DialogInterface.OnClickListener(){
+
+                        @Override
+                        public void onClick(DialogInterface dialog , int which){
+                        }
+                    });
+                    alertDialog.show();
 
                 } else {
 
                     // Show a toast message depending on whether or not the insertion was successful
                     if (writeUserDetails(regUsernameStr, regNameStr, regMajorStr, regEmailStr, regDoBStr, regPassword1Str) == -1) {
                         // If the row ID is -1, then there was an error with insertion.
-                        Toast.makeText(this, "Error with saving student details", Toast.LENGTH_SHORT).show();
+                        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                        alertDialog.setMessage("Error with saving student details");
+                        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,"Ok",new DialogInterface.OnClickListener(){
+
+                            @Override
+                            public void onClick(DialogInterface dialog , int which){
+                            }
+                        });
+                        alertDialog.show();
                     } else {
                         session.createUserLoginSession(regUsernameStr);
-
                         activityTracker = new ActivityTracker(getApplicationContext(), regUsernameStr);
                         activityTracker.updateActivity(regUsernameStr+" registered!");
                         // Student Registration is successful after passing all the validations
                         Intent intent = new Intent(RegistrationPage.this, LandingScreen.class);
-                        //Toast.makeText(this, "Registered Successfully" + newRowId, Toast.LENGTH_SHORT).show();
-                        //intent.putExtra(Utils.MSG_KEY_INTENT, "This account is for " + regUsername.getText() + " !");
-                        //intent.putExtra("signInUsername",regUsernameStr);
                         startActivity(intent);
                     }
                 }

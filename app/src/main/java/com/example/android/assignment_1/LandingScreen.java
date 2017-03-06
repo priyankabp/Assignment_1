@@ -14,8 +14,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.assignment_1.utils.Utils;
-
 import static com.example.android.assignment_1.UserSessionManagement.SHARED_PREF_FILENAME;
 
 
@@ -33,6 +31,8 @@ public class LandingScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_screen);
+
+
 
         // Session class instance
         session = new UserSessionManagement(getApplicationContext());

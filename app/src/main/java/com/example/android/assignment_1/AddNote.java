@@ -90,8 +90,6 @@ public class AddNote extends AppCompatActivity implements TitlesFragment.OnFragm
                                 FileOutputStream outputStream = openFileOutput(noteTitle.getText().toString(), MODE_APPEND);
                                 outputStream.write(noteBody.getText().toString().getBytes());
                                 outputStream.close();
-
-                                Toast.makeText(AddNote.this, "output", Toast.LENGTH_SHORT).show();
                                 Snackbar.make(thisView, "File Saved", Snackbar.LENGTH_SHORT).show();
                                 activityTracker.updateActivity(logInUser+" added note" + noteTitle.getText().toString());
                             } catch (Exception e) {

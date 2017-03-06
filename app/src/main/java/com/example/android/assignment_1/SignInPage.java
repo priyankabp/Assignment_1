@@ -1,9 +1,11 @@
 package com.example.android.assignment_1;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -88,7 +90,7 @@ public class SignInPage extends AppCompatActivity {
                     activityTracker.updateActivity(signInUsername+" signed in!");
 
                     Intent intent = new Intent(SignInPage.this, LandingScreen.class);
-                    Toast.makeText(getApplicationContext(), "Congrats: Login Successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                     //intent.putExtra(Utils.MSG_KEY_INTENT, "This account is for " + signInUsername + " !");
                     //intent.putExtra("signInUsername",signInUsername);
                     startActivity(intent);
@@ -97,13 +99,31 @@ public class SignInPage extends AppCompatActivity {
                     // resources and makes it invalid.
                     cursor.close();
                 } else {
-                    Toast.makeText(getApplicationContext(), "User Name or Password does not match", Toast.LENGTH_LONG).show();
+                    AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                    alertDialog.setMessage("User Name or Password does not match");
+                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,"Ok",new DialogInterface.OnClickListener(){
+
+                        @Override
+                        public void onClick(DialogInterface dialog , int which){
+                        }
+                    });
+                    alertDialog.show();
+
                     // Always close the cursor when you're done reading from it. This releases all its
                     // resources and makes it invalid.
                     cursor.close();
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "User Name does not exist", Toast.LENGTH_LONG).show();
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setMessage("User Name does not exist");
+                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,"Ok",new DialogInterface.OnClickListener(){
+
+                    @Override
+                    public void onClick(DialogInterface dialog , int which){
+                    }
+                });
+                alertDialog.show();
+
                 // Always close the cursor when you're done reading from it. This releases all its
                 // resources and makes it invalid.
                 cursor.close();

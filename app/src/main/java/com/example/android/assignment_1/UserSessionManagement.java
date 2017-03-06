@@ -1,7 +1,6 @@
 package com.example.android.assignment_1;
 
 import java.security.SecureRandom;
-import java.util.HashMap;
 
 import android.content.Context;
 import android.content.Intent;

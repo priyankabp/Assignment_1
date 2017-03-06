@@ -5,9 +5,11 @@
 package com.example.android.assignment_1;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -91,25 +93,28 @@ public class ForgotPasswordPage extends AppCompatActivity {
                 cursor.moveToFirst();
 
                 // if the signInPassword and the storedPassword are same the login is successful
-
                 Intent intent = new Intent(ForgotPasswordPage.this, DisplayPassword.class);
                 intent.putExtra(Utils.MSG_KEY_INTENT, "Your password is : " + cursor.getString(0));
                 startActivity(intent);
+
                 // Always close the cursor when you're done reading from it. This releases all its
                 // resources and makes it invalid.
                 cursor.close();
             } else {
-                Toast.makeText(ForgotPasswordPage.this, "User not found", Toast.LENGTH_LONG).show();
+                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setMessage("User not found");
+                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,"Ok",new DialogInterface.OnClickListener(){
+
+                    @Override
+                    public void onClick(DialogInterface dialog , int which){
+                    }
+                });
+                alertDialog.show();
+
                 // Always close the cursor when you're done reading from it. This releases all its
                 // resources and makes it invalid.
                 cursor.close();
             }
-            /*//After validating the username and email shows notification that password is sent to email.
-            if (view.getId() == R.id.forgotPassword_submit_button) {
-                Intent intent = new Intent(ForgotPasswordPage.this, MainActivity.class);
-                Toast.makeText(getApplicationContext(), "Password sent to your email.", Toast.LENGTH_LONG).show();
-                startActivity(intent);
-            }*/
         }
 
 
