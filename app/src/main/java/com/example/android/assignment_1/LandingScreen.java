@@ -19,6 +19,10 @@ import com.example.android.assignment_1.utils.Utils;
 
 public class LandingScreen extends AppCompatActivity {
 
+    // User Session Manager Class
+    UserSessionManagement session;
+    ActivityTracker activityTracker;
+
     private TextView textView;
     private String logInUser;
 
@@ -28,15 +32,21 @@ public class LandingScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_screen);
 
-        Intent in = getIntent();
+        // Session class instance
+        session = new UserSessionManagement(getApplicationContext());
+
+        /*Intent in = getIntent();
         Bundle bu = in.getExtras();
-        logInUser = bu.getString("signInUsername");
+        logInUser = bu.getString("signInUsername");*/
+
+        logInUser = session.getUserDetails();
 
         //Sets the registered username.
         textView = (TextView) findViewById(R.id.landing_screen_textView);
         textView.setText("Logged in user: "+logInUser);
 
-
+        activityTracker = new ActivityTracker(getApplicationContext(), logInUser);
+        activityTracker.updateActivity(logInUser+" moved to Welcome page!");
     }
 
     @Override
@@ -77,10 +87,12 @@ public class LandingScreen extends AppCompatActivity {
         //Toast.makeText(this, logInUser, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(LandingScreen.this, EditProfile.class);
         //intent.putExtra(Utils.MSG_KEY_INTENT, "Update profile for " + logInUser + " !");
-        intent.putExtra("signInUsername",logInUser);
+        //intent.putExtra("signInUsername",logInUser);
         startActivity(intent);
     }
 
     public void onLogOutClick(View view) {
+        activityTracker.updateActivity(logInUser+" signed out!");
+        session.logoutUser();
     }
 }

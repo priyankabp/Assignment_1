@@ -20,13 +20,18 @@ import com.example.android.assignment_1.utils.Utils;
 
 public class SignInPage extends AppCompatActivity {
 
+    UserSessionManagement session ;
+    // User Session Manager Class
+    ActivityTracker activityTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_page);
 
+        // UserSession Manager
+        session = new UserSessionManagement(getApplicationContext());
     }
-
 
     public void onLogInClick(View view) {
 
@@ -77,23 +82,32 @@ public class SignInPage extends AppCompatActivity {
 
                 // if the signInPassword and the storedPassword are same the login is successful
                 if (signInPassword.equals(cursor.getString(0))) {
+                    session.createUserLoginSession(signInUsername);
+
+                    Toast.makeText(getApplicationContext(),
+                            "User Login Status: " + session.isUserLoggedIn(),
+                            Toast.LENGTH_LONG).show();
+
+                    activityTracker = new ActivityTracker(getApplicationContext(), signInUsername);
+                    activityTracker.updateActivity(signInUsername+" signed in!");
+
                     Intent intent = new Intent(SignInPage.this, LandingScreen.class);
-                    Toast.makeText(SignInPage.this, "Congrats: Login Successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Congrats: Login Successful", Toast.LENGTH_SHORT).show();
                     //intent.putExtra(Utils.MSG_KEY_INTENT, "This account is for " + signInUsername + " !");
-                    intent.putExtra("signInUsername",signInUsername);
+                    //intent.putExtra("signInUsername",signInUsername);
                     startActivity(intent);
 
                     // Always close the cursor when you're done reading from it. This releases all its
                     // resources and makes it invalid.
                     cursor.close();
                 } else {
-                    Toast.makeText(SignInPage.this, "User Name or Password does not match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "User Name or Password does not match", Toast.LENGTH_LONG).show();
                     // Always close the cursor when you're done reading from it. This releases all its
                     // resources and makes it invalid.
                     cursor.close();
                 }
             } else {
-                Toast.makeText(SignInPage.this, "User Name does not exist", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "User Name does not exist", Toast.LENGTH_LONG).show();
                 // Always close the cursor when you're done reading from it. This releases all its
                 // resources and makes it invalid.
                 cursor.close();

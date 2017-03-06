@@ -28,6 +28,11 @@ public class AddNote extends AppCompatActivity implements TitlesFragment.OnFragm
 
     FragmentTransaction transaction;
 
+    // User Session Manager Class
+    UserSessionManagement session;
+    ActivityTracker activityTracker;
+    private String logInUser;
+
     @BindView(R.id.AddNote_button)
     Button addNote_button;
     @BindView(R.id.AddNote_textView)
@@ -41,6 +46,12 @@ public class AddNote extends AppCompatActivity implements TitlesFragment.OnFragm
 
         Stetho.initializeWithDefaults(this);
         ButterKnife.bind(this);
+
+        // Session class instance
+        session = new UserSessionManagement(getApplicationContext());
+        logInUser = session.getUserDetails();
+        activityTracker = new ActivityTracker(getApplicationContext(), logInUser);
+        activityTracker.updateActivity(logInUser+" moved to Add Note Page!");
 
         addNote_button.setOnClickListener(new Lsnr());
 
@@ -72,18 +83,17 @@ public class AddNote extends AppCompatActivity implements TitlesFragment.OnFragm
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
-
-
                             addNote_textView.setText(noteTitle.getText());
-
 
                             //Using Files
                             try {
                                 FileOutputStream outputStream = openFileOutput(noteTitle.getText().toString(), MODE_APPEND);
                                 outputStream.write(noteBody.getText().toString().getBytes());
                                 outputStream.close();
+
                                 Toast.makeText(AddNote.this, "output", Toast.LENGTH_SHORT).show();
                                 Snackbar.make(thisView, "File Saved", Snackbar.LENGTH_SHORT).show();
+                                activityTracker.updateActivity(logInUser+" added note" + noteTitle.getText().toString());
                             } catch (Exception e) {
                                 Log.e("ERROR", e.getMessage());
                             }

@@ -35,6 +35,10 @@ import static org.xmlpull.v1.XmlPullParser.TYPES;
 public class EditProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private StudentDbHelper dbHelper;
+    // User Session Manager Class
+    UserSessionManagement session;
+    ActivityTracker activityTracker;
+
     Calendar calendar = Calendar.getInstance();
     private TextView editProfile_textView;
     private String logInUser;
@@ -49,10 +53,16 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_edit_profile);
         dbHelper = new StudentDbHelper(this);
 
-        Intent in = getIntent();
+        /*Intent in = getIntent();
         Bundle bu = in.getExtras();
-        logInUser = bu.getString("signInUsername");
+        logInUser = bu.getString("signInUsername");*/
         //Toast.makeText(this, logInUser, Toast.LENGTH_LONG).show();
+        // Session class instance
+        session = new UserSessionManagement(getApplicationContext());
+        logInUser = session.getUserDetails();
+
+        activityTracker = new ActivityTracker(getApplicationContext(), logInUser);
+        activityTracker.updateActivity(logInUser+" moved to Edit Profile Page!");
 
         editProfile_textView = (TextView) findViewById(R.id.EditProfile_userName);
         editName = (EditText) findViewById(R.id.EditProfile_name);
@@ -212,9 +222,11 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
             updateUserDetails(userNameStr, nameStr, majorStr, emailStr, dobStr);
 
             Toast.makeText(this, "Values updated", Toast.LENGTH_SHORT).show();
+
+            activityTracker.updateActivity(logInUser+" updated profile!");
             Intent intent = new Intent(this, LandingScreen.class);
             //intent.putExtra(Utils.MSG_KEY_INTENT, "Update profile for " + logInUser + " !");
-            intent.putExtra("signInUsername",logInUser);
+            //intent.putExtra("signInUsername",logInUser);
             startActivity(intent);
         }
 

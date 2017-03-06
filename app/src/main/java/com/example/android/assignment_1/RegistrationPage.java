@@ -40,6 +40,9 @@ import java.util.Locale;
 public class RegistrationPage extends AppCompatActivity implements OnItemSelectedListener {
 
     private StudentDbHelper dbHelper;
+    UserSessionManagement session;
+    ActivityTracker activityTracker;
+
     private EditText regUsername;
     private EditText regName;
     private EditText regEmail;
@@ -53,6 +56,9 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // UserSession Manager
+        session = new UserSessionManagement(getApplicationContext());
 
         // Create database helper
         dbHelper = new StudentDbHelper(this);
@@ -232,11 +238,15 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
                         // If the row ID is -1, then there was an error with insertion.
                         Toast.makeText(this, "Error with saving student details", Toast.LENGTH_SHORT).show();
                     } else {
+                        session.createUserLoginSession(regUsernameStr);
+
+                        activityTracker = new ActivityTracker(getApplicationContext(), regUsernameStr);
+                        activityTracker.updateActivity(regUsernameStr+" registered!");
                         // Student Registration is successful after passing all the validations
                         Intent intent = new Intent(RegistrationPage.this, LandingScreen.class);
                         //Toast.makeText(this, "Registered Successfully" + newRowId, Toast.LENGTH_SHORT).show();
                         //intent.putExtra(Utils.MSG_KEY_INTENT, "This account is for " + regUsername.getText() + " !");
-                        intent.putExtra("signInUsername",regUsernameStr);
+                        //intent.putExtra("signInUsername",regUsernameStr);
                         startActivity(intent);
                     }
                 }
