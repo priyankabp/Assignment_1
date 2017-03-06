@@ -5,20 +5,10 @@
     tools:context=".RegistrationPage">
 
     <item
-        android:id="@+id/action_save"
-        android:title="Save"
-        android:icon="@mipmap/ic_done"
-        android:background="@null"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/action_delete"
         android:title="Delete"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_back"
-        android:title="Back"
-        app:showAsAction="ifRoom"/>
+
 
 </menu>

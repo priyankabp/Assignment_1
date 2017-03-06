@@ -30,12 +30,16 @@
         <activity
             android:name=".DisplayPassword"
             android:label="Display Password" />
-        <activity android:name=".AddNote"
-            android:label="Add New Note"/>
+        <activity
+            android:name=".AddNote"
+            android:label="Add New Note" />
         <activity android:name=".AddNote2" />
-        <activity android:name=".EditProfile"
-            android:label="Edit Profile">
-        </activity>
+        <activity
+            android:name=".EditProfile"
+            android:label="Edit Profile"/>
+        <activity
+            android:name=".ActivityHistory"
+            android:label="Your Browsing History"></activity>
     </application>
 
 </manifest>

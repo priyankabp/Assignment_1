@@ -84,10 +84,6 @@ public class SignInPage extends AppCompatActivity {
                 if (signInPassword.equals(cursor.getString(0))) {
                     session.createUserLoginSession(signInUsername);
 
-                    Toast.makeText(getApplicationContext(),
-                            "User Login Status: " + session.isUserLoggedIn(),
-                            Toast.LENGTH_LONG).show();
-
                     activityTracker = new ActivityTracker(getApplicationContext(), signInUsername);
                     activityTracker.updateActivity(signInUsername+" signed in!");
 

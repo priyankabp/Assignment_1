@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.android.assignment_1.utils.Utils;
 
+import static com.example.android.assignment_1.UserSessionManagement.SHARED_PREF_FILENAME;
+
 
 public class LandingScreen extends AppCompatActivity {
 
@@ -41,6 +43,9 @@ public class LandingScreen extends AppCompatActivity {
 
         logInUser = session.getUserDetails();
 
+        textView = (TextView) findViewById(R.id.landingScreen_userSessionId);
+        textView.setText("SESSION ID :"+UserSessionManagement.sessionId);
+
         //Sets the registered username.
         textView = (TextView) findViewById(R.id.landing_screen_textView);
         textView.setText("Logged in user: "+logInUser);
@@ -61,10 +66,6 @@ public class LandingScreen extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
-            // Respond to a click on the "Save" menu option
-            case R.id.action_save:
-                // Do nothing for now
-                return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
                 // Do nothing for now
@@ -94,5 +95,12 @@ public class LandingScreen extends AppCompatActivity {
     public void onLogOutClick(View view) {
         activityTracker.updateActivity(logInUser+" signed out!");
         session.logoutUser();
+    }
+
+    public void onViewActivityHistoryClick(MenuItem item) {
+
+        Intent intent = new Intent(LandingScreen.this,ActivityHistory.class);
+        Toast.makeText(getApplicationContext(),SHARED_PREF_FILENAME+"_"+logInUser, Toast.LENGTH_LONG).show();
+        startActivity(intent);
     }
 }

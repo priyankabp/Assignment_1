@@ -1,5 +1,6 @@
 package com.example.android.assignment_1;
 
+import java.security.SecureRandom;
 import java.util.HashMap;
 
 import android.content.Context;
@@ -22,7 +23,7 @@ public class UserSessionManagement {
     int PRIVATE_MODE = 0;
 
     // Sharedpref file name
-    private static final String SHARED_PREF_FILENAME = "UserRegister";
+    public static final String SHARED_PREF_FILENAME = "UserRegister";
 
     // Shared Preferences Keys
     private static final String IS_USER_LOGIN = "IsUserLoggedIn";
@@ -30,11 +31,20 @@ public class UserSessionManagement {
     // Username
     public static final String USERNAME = "username";
 
+    //session id
+    public static Integer sessionId;
+
     // Constructor
     public UserSessionManagement(Context context){
         this.context = context;
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_FILENAME, PRIVATE_MODE);
         editor = sharedPreferences.edit();
+    }
+
+    public Integer generateSessionId(){
+        SecureRandom random = new SecureRandom();
+        Integer number = 10000 + random.nextInt(100000);
+        return number;
     }
 
     //Create login session
@@ -47,6 +57,8 @@ public class UserSessionManagement {
 
         // commit changes
         editor.commit();
+
+        sessionId = generateSessionId();
     }
 
     /**

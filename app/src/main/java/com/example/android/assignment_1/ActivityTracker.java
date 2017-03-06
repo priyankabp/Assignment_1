@@ -2,6 +2,7 @@ package com.example.android.assignment_1;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -46,13 +47,13 @@ public class ActivityTracker {
         //Using Shared Preference
         //editor.putString(KEY_TITLE,USERNAME);
         String currentDateTimeStr = DateFormat.getDateTimeInstance().format(new Date());
-        editor.putString("Activity_"+ActivityTracker.count++,currentDateTimeStr + ": " + activity);
+        editor.putString("Activity_" + activity + "at" + ActivityTracker.count++,currentDateTimeStr);
         editor.commit();
     }
 
-    /**
+    /*
      * Get stored session data
-     * */
+     */
     public static String[] getListFromSP(Context context, String fileName, String key){
 
         SharedPreferences sharedPreferences=context.getSharedPreferences(fileName,
