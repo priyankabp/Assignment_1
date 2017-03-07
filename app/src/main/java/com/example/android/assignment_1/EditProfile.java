@@ -1,3 +1,6 @@
+/*
+* This class is used to edit and update the user profile.
+* */
 package com.example.android.assignment_1;
 
 import android.app.DatePickerDialog;
@@ -8,7 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,20 +21,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.assignment_1.utils.StudentContract;
+
 import com.example.android.assignment_1.utils.StudentContract.*;
 import com.example.android.assignment_1.utils.StudentDbHelper;
-import com.example.android.assignment_1.utils.Utils;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
-import static android.R.attr.id;
-import static android.R.attr.name;
-import static android.view.View.Z;
-import static org.xmlpull.v1.XmlPullParser.TYPES;
 
 public class EditProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -54,20 +53,18 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_edit_profile);
         dbHelper = new StudentDbHelper(this);
 
-        /*Intent in = getIntent();
-        Bundle bu = in.getExtras();
-        logInUser = bu.getString("signInUsername");*/
-        //Toast.makeText(this, logInUser, Toast.LENGTH_LONG).show();
+
         // Session class instance
         session = new UserSessionManagement(getApplicationContext());
         logInUser = session.getUserDetails();
 
         activityTracker = new ActivityTracker(getApplicationContext(), logInUser);
-        activityTracker.updateActivity(logInUser+" moved to Edit Profile Page!");
+        activityTracker.updateActivity(logInUser + " moved to Edit Profile Page!");
 
         editProfile_textView = (TextView) findViewById(R.id.EditProfile_userName);
         editName = (EditText) findViewById(R.id.EditProfile_name);
         editEmail = (EditText) findViewById(R.id.EditProfile_email);
+
         // Spinner element in the registration activity.
         spinner = (Spinner) findViewById(R.id.EditProfile_spinner);
 
@@ -101,7 +98,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
         //Sets the registered username.
 
-        editProfile_textView.setText("Username: "+logInUser);
+        editProfile_textView.setText("Username: " + logInUser);
 
         // Create and/or open a database to read from it
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -126,7 +123,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
             editName.setText(cursor.getString(0));
             editEmail.setText(cursor.getString(1));
 
-            String[] majorArray =  getResources().getStringArray(R.array.major_array);
+            String[] majorArray = getResources().getStringArray(R.array.major_array);
             Integer position = Arrays.asList(majorArray).indexOf(cursor.getString(2));
             spinner.setSelection(position);
 
@@ -171,7 +168,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-    public boolean verifyData(String nameStr, String emailStr, String doBStr){
+    public boolean verifyData(String nameStr, String emailStr, String doBStr) {
         Boolean isValid = true;
 
         // Name validation
@@ -181,7 +178,6 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         }
 
         // Email validation specific for montclair.edu
-        //String regex = "/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(domain|domain2)\.com$/"
         String emailPattern = "[a-zA-Z0-9._-]+@(montclair)\\.edu";
         if (TextUtils.isEmpty(emailStr) || !(emailStr.matches(emailPattern))) {
             editEmail.setError("Email ID must contain montclair.edu");
@@ -197,7 +193,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         return isValid;
     }
 
-    public void updateUserDetails(String userNameStr, String nameStr, String majorStr, String emailStr, String dobStr){
+    public void updateUserDetails(String userNameStr, String nameStr, String majorStr, String emailStr, String dobStr) {
         // Gets the database in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -220,12 +216,12 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         String emailStr = editEmail.getText().toString().trim();
         String dobStr = dateText.getText().toString().trim();
 
-        if(verifyData(nameStr, emailStr, dobStr)){
+        if (verifyData(nameStr, emailStr, dobStr)) {
             updateUserDetails(userNameStr, nameStr, majorStr, emailStr, dobStr);
 
             Toast.makeText(this, "Values updated", Toast.LENGTH_SHORT).show();
 
-            activityTracker.updateActivity(logInUser+" updated profile!");
+            activityTracker.updateActivity(logInUser + " updated profile!");
             Intent intent = new Intent(this, LandingScreen.class);
             startActivity(intent);
         }

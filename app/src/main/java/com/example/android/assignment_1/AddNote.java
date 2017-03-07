@@ -1,3 +1,8 @@
+/*
+* This class adds the notes to Files.
+* Notes are added to Files with date time and the logged in user name.
+*
+* */
 package com.example.android.assignment_1;
 
 import android.content.DialogInterface;
@@ -13,12 +18,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.util.Date;
@@ -55,17 +58,17 @@ public class AddNote extends AppCompatActivity implements TitlesFragment.OnFragm
         session = new UserSessionManagement(getApplicationContext());
         logInUser = session.getUserDetails();
         activityTracker = new ActivityTracker(getApplicationContext(), logInUser);
-        activityTracker.updateActivity(logInUser+" moved to Add Note Page!");
+        activityTracker.updateActivity(logInUser + " moved to Add Note Page!");
 
         addNote_button.setOnClickListener(new Lsnr());
 
-        transaction=getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_container,new TitlesFragment());
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container, new TitlesFragment());
         transaction.commit();
 
-        if(findViewById(R.id.fragment_container_details)!=null){
-            transaction=getSupportFragmentManager().beginTransaction();
-            transaction.add(R.id.fragment_container_details,new DetailsFragment());
+        if (findViewById(R.id.fragment_container_details) != null) {
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.fragment_container_details, new DetailsFragment());
             transaction.commit();
         }
     }
@@ -87,20 +90,20 @@ public class AddNote extends AppCompatActivity implements TitlesFragment.OnFragm
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
 
-                            //addNote_textView.setText(noteTitle.getText());
+                            addNote_textView.setText(noteTitle.getText());
 
-                            //Using Files
+                            //Using Files to store the notes with name time and content
                             try {
                                 FileOutputStream outputStream = openFileOutput(noteTitle.getText().toString(), MODE_APPEND);
                                 String currentDateTimeStr = DateFormat.getDateTimeInstance().format(new Date());
-                                String name = "Name: " + logInUser + "\n" ;
+                                String name = "Name: " + logInUser + "\n";
                                 outputStream.write(name.getBytes());
-                                String time = "Time: " + currentDateTimeStr + "\n\n" ;
+                                String time = "Time: " + currentDateTimeStr + "\n\n";
                                 outputStream.write(time.getBytes());
                                 outputStream.write(noteBody.getText().toString().getBytes());
                                 outputStream.close();
                                 Snackbar.make(thisView, "File Saved", Snackbar.LENGTH_SHORT).show();
-                                activityTracker.updateActivity(logInUser+" added note" + noteTitle.getText().toString());
+                                activityTracker.updateActivity(logInUser + " added note" + noteTitle.getText().toString());
 
                             } catch (Exception e) {
                                 Log.e("ERROR", e.getMessage());

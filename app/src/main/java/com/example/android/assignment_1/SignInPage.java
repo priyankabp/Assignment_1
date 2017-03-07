@@ -10,125 +10,153 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.android.assignment_1.utils.StudentContract.*;
 import com.example.android.assignment_1.utils.StudentDbHelper;
-import com.example.android.assignment_1.utils.Utils;
 
 
 public class SignInPage extends AppCompatActivity {
 
-    UserSessionManagement session ;
     // User Session Manager Class
+    UserSessionManagement session;
+    // User Activity Tracker Class
     ActivityTracker activityTracker;
+
+    private EditText signInUsername;
+    private EditText signInPassword;
+    private String signInUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_page);
 
         // UserSession Manager
         session = new UserSessionManagement(getApplicationContext());
+
+        signInUsername = (EditText) findViewById(R.id.SignIn_editText_userName);
+        signInPassword = (EditText) findViewById(R.id.SignIn_editText_password);
+
     }
 
-    public void onLogInClick(View view) {
+    public boolean verifyUserExist(String uName) {
+
+        // To access our database, we instantiate our subclass of SQLiteOpenHelper
+        // and pass the context, which is the current activity.
+        StudentDbHelper dbHelper = new StudentDbHelper(this);
+
+        // Create and/or open a database to read from it
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        //builds query to match the entered password and the stored password in the database with unique username
+        Cursor cursor = db.query(StudentEntry.TABLE_NAME,
+                new String[]{StudentEntry.COLUMN_PASSWORD},
+                " username = ?",
+                new String[]{uName},
+                null,
+                null,
+                null,
+                null);
+
+        //after receiving the result of the query moves the cursor to first row of the result and checks that received data
+        if (cursor != null && cursor.getCount() > 0) {
+
+            cursor.moveToFirst();
+            if (signInPassword.equals(cursor.getString(0))) {
+
+                session.createUserLoginSession(uName);
+
+                activityTracker = new ActivityTracker(getApplicationContext(), uName);
+                activityTracker.updateActivity(uName + " signed in!");
+
+            }
+
+            cursor.close();
+            return true;
+        }
+
+        db.close();
+        return false;
+
+    }
+
+    public boolean verifyData(String signInUsernameStr, String signInPasswordStr) {
 
         Boolean isValid = true;
-
-        // get the References of views
-        EditText signIn_editText_Username = (EditText) findViewById(R.id.SignIn_editText_userName);
-        EditText signIn_editText_Password = (EditText) findViewById(R.id.SignIn_editText_password);
-
-        String signInUsername = signIn_editText_Username.getText().toString();
-        String signInPassword = signIn_editText_Password.getText().toString();
-
         //Validates Username
-        if (TextUtils.isEmpty(signInUsername)) {
-            signIn_editText_Username.setError("Please enter a username.");
+        if (TextUtils.isEmpty(signInUsernameStr)) {
+            signInUsername.setError("Please enter a username.");
             isValid = false;
         }
 
         //Validates Password
-        String password = signInPassword.trim();
         String passwordPattern = "(?=.*[A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$";
-        if (TextUtils.isEmpty(signInPassword) || !(password.matches(passwordPattern))) {
-            signIn_editText_Password.setError("Incorrect Password");
+
+        if (TextUtils.isEmpty(signInUsernameStr) || !(signInPasswordStr.matches(passwordPattern))) {
+
+            signInPassword.setError("Incorrect Password");
             isValid = false;
         }
 
-        if (isValid) {
-            // To access our database, we instantiate our subclass of SQLiteOpenHelper
-            // and pass the context, which is the current activity.
-            StudentDbHelper dbHelper = new StudentDbHelper(this);
+        return isValid;
+    }
 
-            // Create and/or open a database to read from it
-            SQLiteDatabase db = dbHelper.getReadableDatabase();
+    public void onLogInClick(View view) {
 
-            //builds query to match the entered password and the stored password in the database with unique username
-            Cursor cursor = db.query(StudentEntry.TABLE_NAME,
-                    new String[]{StudentEntry.COLUMN_PASSWORD},
-                    " username = ?",
-                    new String[]{signInUsername},
-                    null,
-                    null,
-                    null,
-                    null);
+        String signInUsernameStr = signInUsername.getText().toString().trim();
+        String signInPasswordStr = signInPassword.getText().toString().trim();
 
-            //after receiving the result of the query moves the cursor to first row of the result and checks that received data
-            if (cursor != null && cursor.getCount() > 0) {
-                cursor.moveToFirst();
+        // validate username and password
+        if (verifyData(signInUsernameStr, signInPasswordStr)) {
 
-                // if the signInPassword and the storedPassword are same the login is successful
-                if (signInPassword.equals(cursor.getString(0))) {
-                    session.createUserLoginSession(signInUsername);
+            if (view.getId() == R.id.SignIn_button_logIn) {
 
-                    activityTracker = new ActivityTracker(getApplicationContext(), signInUsername);
-                    activityTracker.updateActivity(signInUsername+" signed in!");
+                // verify if the user exits
+                if (verifyUserExist(signInUsernameStr)) {
 
                     Intent intent = new Intent(SignInPage.this, LandingScreen.class);
                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                    //intent.putExtra(Utils.MSG_KEY_INTENT, "This account is for " + signInUsername + " !");
-                    //intent.putExtra("signInUsername",signInUsername);
+
+                    //creates session for the logged in user
+                    signInUser = session.createUserLoginSession(signInUsernameStr);
+
+                    //updating the activity tracking file
+                    activityTracker = new ActivityTracker(getApplicationContext(), signInUser);
+                    activityTracker.updateActivity(signInUser + " signed in!");
+
                     startActivity(intent);
 
-                    // Always close the cursor when you're done reading from it. This releases all its
-                    // resources and makes it invalid.
-                    cursor.close();
                 } else {
+
                     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                     alertDialog.setMessage("User Name or Password does not match");
-                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,"Ok",new DialogInterface.OnClickListener(){
+                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
 
                         @Override
-                        public void onClick(DialogInterface dialog , int which){
+                        public void onClick(DialogInterface dialog, int which) {
                         }
                     });
                     alertDialog.show();
 
-                    // Always close the cursor when you're done reading from it. This releases all its
-                    // resources and makes it invalid.
-                    cursor.close();
                 }
-            } else {
-                AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-                alertDialog.setMessage("User Name does not exist");
-                alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,"Ok",new DialogInterface.OnClickListener(){
-
-                    @Override
-                    public void onClick(DialogInterface dialog , int which){
-                    }
-                });
-                alertDialog.show();
-
-                // Always close the cursor when you're done reading from it. This releases all its
-                // resources and makes it invalid.
-                cursor.close();
             }
 
+        } else {
+
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setMessage("User Name does not exist");
+            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+
+            alertDialog.show();
 
         }
     }
@@ -145,7 +173,6 @@ public class SignInPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 }

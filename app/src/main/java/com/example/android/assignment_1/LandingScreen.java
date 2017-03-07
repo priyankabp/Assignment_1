@@ -12,9 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import static com.example.android.assignment_1.UserSessionManagement.SHARED_PREF_FILENAME;
 
 
 public class LandingScreen extends AppCompatActivity {
@@ -33,25 +30,20 @@ public class LandingScreen extends AppCompatActivity {
         setContentView(R.layout.activity_landing_screen);
 
 
-
         // Session class instance
         session = new UserSessionManagement(getApplicationContext());
-
-        /*Intent in = getIntent();
-        Bundle bu = in.getExtras();
-        logInUser = bu.getString("signInUsername");*/
 
         logInUser = session.getUserDetails();
 
         textView = (TextView) findViewById(R.id.landingScreen_userSessionId);
-        textView.setText("SESSION ID :"+UserSessionManagement.sessionId);
+        textView.setText("SESSION ID :" + UserSessionManagement.sessionId);
 
         //Sets the registered username.
         textView = (TextView) findViewById(R.id.landing_screen_textView);
-        textView.setText("Logged in user: "+logInUser);
+        textView.setText("Logged in user: " + logInUser);
 
         activityTracker = new ActivityTracker(getApplicationContext(), logInUser);
-        activityTracker.updateActivity(logInUser+" moved to Welcome page!");
+        activityTracker.updateActivity(logInUser + " moved to Welcome page!");
     }
 
     @Override
@@ -80,27 +72,26 @@ public class LandingScreen extends AppCompatActivity {
     }
 
     public void onAddNoteClick(MenuItem item) {
+
         Intent intent = new Intent(LandingScreen.this, AddNote.class);
         startActivity(intent);
     }
 
     public void onEditProfileClick(MenuItem item) {
-        //Toast.makeText(this, logInUser, Toast.LENGTH_LONG).show();
+
         Intent intent = new Intent(LandingScreen.this, EditProfile.class);
-        //intent.putExtra(Utils.MSG_KEY_INTENT, "Update profile for " + logInUser + " !");
-        //intent.putExtra("signInUsername",logInUser);
         startActivity(intent);
     }
 
     public void onLogOutClick(View view) {
-        activityTracker.updateActivity(logInUser+" signed out!");
+
+        activityTracker.updateActivity(logInUser + " signed out!");
         session.logoutUser();
     }
 
     public void onViewActivityHistoryClick(MenuItem item) {
 
-        Intent intent = new Intent(LandingScreen.this,ActivityHistory.class);
-        Toast.makeText(getApplicationContext(),SHARED_PREF_FILENAME+"_"+logInUser, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(LandingScreen.this, ActivityHistory.class);
         startActivity(intent);
     }
 }

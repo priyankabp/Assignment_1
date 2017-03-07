@@ -64,7 +64,7 @@
             <EditText
                 android:id="@+id/Registration_name"
                 style="@style/EditorFieldStyle"
-                android:hint="@string/caption_hint_Registration_editText_userName"
+                android:hint="@string/caption_hint_Registration_editText_name"
                 android:inputType="text" />
 
         </LinearLayout>

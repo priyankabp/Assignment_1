@@ -34,20 +34,20 @@ public class UserSessionManagement {
     public static Integer sessionId;
 
     // Constructor
-    public UserSessionManagement(Context context){
+    public UserSessionManagement(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_FILENAME, PRIVATE_MODE);
         editor = sharedPreferences.edit();
     }
 
-    public Integer generateSessionId(){
+    public Integer generateSessionId() {
         SecureRandom random = new SecureRandom();
         Integer number = 10000 + random.nextInt(100000);
         return number;
     }
 
     //Create login session
-    public void createUserLoginSession(String name){
+    public String createUserLoginSession(String name) {
         // Storing login value as TRUE
         editor.putBoolean(IS_USER_LOGIN, true);
 
@@ -58,16 +58,17 @@ public class UserSessionManagement {
         editor.commit();
 
         sessionId = generateSessionId();
+        return name;
     }
 
     /**
      * Check login method will check user login status
      * If false it will redirect user to login page
      * Else do anything
-     * */
-    public boolean checkLogin(){
+     */
+    public boolean checkLogin() {
         // Check login status
-        if(!this.isUserLoggedIn()){
+        if (!this.isUserLoggedIn()) {
 
             // user is not logged in redirect him to SignInPage Activity
             Intent i = new Intent(context, SignInPage.class);
@@ -88,8 +89,8 @@ public class UserSessionManagement {
 
     /**
      * Get stored session data
-     * */
-    public String getUserDetails(){
+     */
+    public String getUserDetails() {
 
         // return user
         return sharedPreferences.getString(USERNAME, null);
@@ -97,8 +98,8 @@ public class UserSessionManagement {
 
     /**
      * Clear session details
-     * */
-    public void logoutUser(){
+     */
+    public void logoutUser() {
 
         // Clearing all user data from Shared Preferences
         editor.clear();
@@ -119,7 +120,7 @@ public class UserSessionManagement {
 
 
     // Check for login
-    public boolean isUserLoggedIn(){
+    public boolean isUserLoggedIn() {
         return sharedPreferences.getBoolean(IS_USER_LOGIN, false);
     }
 }

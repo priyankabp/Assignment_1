@@ -122,7 +122,7 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
     }
 
 
-    public boolean verifyData(String regUsernameStr, String regNameStr, String regEmailStr, String regDoBStr, String regPassword1Str, String regPassword2Str){
+    public boolean verifyData(String regUsernameStr, String regNameStr, String regEmailStr, String regDoBStr, String regPassword1Str, String regPassword2Str) {
         Boolean isValid = true;
         // Username validation
         if (TextUtils.isEmpty(regUsernameStr)) {
@@ -165,7 +165,7 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
         return isValid;
     }
 
-    public boolean verifyUserExist(String uName){
+    public boolean verifyUserExist(String uName) {
 
         // Gets the database in write mode
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -189,7 +189,7 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
 
     }
 
-    public long writeUserDetails(String regUsernameStr, String regNameStr, String regMajorStr, String regEmailStr, String regDoBStr, String regPassword1Str){
+    public long writeUserDetails(String regUsernameStr, String regNameStr, String regMajorStr, String regEmailStr, String regDoBStr, String regPassword1Str) {
 
         // Gets the database in write mode
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -229,32 +229,31 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
                 if (verifyUserExist(regUsernameStr)) {
                     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                     alertDialog.setMessage("Username already exits!");
-                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,"Ok",new DialogInterface.OnClickListener(){
+                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
 
                         @Override
-                        public void onClick(DialogInterface dialog , int which){
+                        public void onClick(DialogInterface dialog, int which) {
                         }
                     });
                     alertDialog.show();
 
                 } else {
 
-                    // Show a toast message depending on whether or not the insertion was successful
                     if (writeUserDetails(regUsernameStr, regNameStr, regMajorStr, regEmailStr, regDoBStr, regPassword1Str) == -1) {
                         // If the row ID is -1, then there was an error with insertion.
                         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                         alertDialog.setMessage("Error with saving student details");
-                        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE,"Ok",new DialogInterface.OnClickListener(){
+                        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
 
                             @Override
-                            public void onClick(DialogInterface dialog , int which){
+                            public void onClick(DialogInterface dialog, int which) {
                             }
                         });
                         alertDialog.show();
                     } else {
                         session.createUserLoginSession(regUsernameStr);
                         activityTracker = new ActivityTracker(getApplicationContext(), regUsernameStr);
-                        activityTracker.updateActivity(regUsernameStr+" registered!");
+                        activityTracker.updateActivity(regUsernameStr + " registered!");
                         // Student Registration is successful after passing all the validations
                         Intent intent = new Intent(RegistrationPage.this, LandingScreen.class);
                         startActivity(intent);

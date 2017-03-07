@@ -1,3 +1,6 @@
+/*
+* This class displays the password of the user.
+* */
 package com.example.android.assignment_1;
 
 import android.support.v7.app.AppCompatActivity;

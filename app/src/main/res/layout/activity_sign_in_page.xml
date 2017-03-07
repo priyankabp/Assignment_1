@@ -31,8 +31,7 @@
             <EditText
                 android:id="@+id/SignIn_editText_userName"
                 style="@style/EditorFieldStyle"
-                android:hint="@string/caption_hint_SignIn_editText_userName"
-                android:inputType="textCapWords" />
+                android:hint="@string/caption_hint_SignIn_editText_userName"/>
 
         </LinearLayout>
     </LinearLayout>
