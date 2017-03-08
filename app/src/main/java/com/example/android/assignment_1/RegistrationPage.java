@@ -5,6 +5,7 @@
 * */
 package com.example.android.assignment_1;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 
 import android.app.DatePickerDialog;
@@ -26,6 +27,11 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -113,12 +119,70 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
 
     };
 
+    public boolean validateDoB(String dob) {
+
+        Pattern pattern;
+        Matcher matcher;
+        final String dateOfBirthPattern = "(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)";
+        pattern = Pattern.compile(dateOfBirthPattern);
+
+
+        matcher = pattern.matcher(dob);
+
+        if (matcher.matches()) {
+            matcher.reset();
+
+            if (matcher.find()) {
+                String day = matcher.group(1);
+                String month = matcher.group(2);
+                int year = Integer.parseInt(matcher.group(3));
+
+                if (day.equals("31") &&
+                        (month.equals("4") || month.equals("6") || month.equals("9") ||
+                                month.equals("11") || month.equals("04") || month.equals("06") ||
+                                month.equals("09"))) {
+                    return false; // only 1,3,5,7,8,10,12 has 31 days
+                } else if (month.equals("2") || month.equals("02")) {
+                    //leap year
+                    if (year % 4 == 0) {
+                        if (day.equals("30") || day.equals("31")) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        if (day.equals("29") || day.equals("30") || day.equals("31")) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     // method to update the selected date from calender on the field.
     private void updateDoB() {
 
-        String myFormat = "MM/dd/yy";
+        String myFormat = "MM/dd/yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(myFormat, Locale.US);
         regDoB.setText(simpleDateFormat.format(calendar.getTime()));
+    }
+
+    public void clearErrors() {
+        regUsername.setError(null);
+        regName.setError(null);
+        regEmail.setError(null);
+        regDoB.setError(null);
+        regPassword1.setError(null);
+        regPassword2.setError(null);
     }
 
 
@@ -144,8 +208,14 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
         }
 
         // DoB validation
-        if (TextUtils.isEmpty(regDoBStr)) {
-            regDoB.setError("Please select your date of birth");
+        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
+        if (TextUtils.isEmpty(regDoBStr) | !validateDoB(regDoBStr) | regDoBStr.compareTo((dateFormat.format(date)).toString()) >= 0) {
+
+            regDoB.setError("Please select valid date of birth");
             isValid = false;
         }
 
@@ -221,6 +291,7 @@ public class RegistrationPage extends AppCompatActivity implements OnItemSelecte
         String regPassword1Str = regPassword1.getText().toString().trim();
         String regPassword2Str = regPassword2.getText().toString().trim();
 
+        clearErrors();
         if (verifyData(regUsernameStr, regNameStr, regEmailStr, regDoBStr, regPassword1Str, regPassword2Str)) {
 
             if (view.getId() == R.id.Registration_button) {

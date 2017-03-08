@@ -39,7 +39,8 @@
             android:label="Edit Profile"/>
         <activity
             android:name=".ActivityHistory"
-            android:label="Your Browsing History"></activity>
+            android:label="Your Browsing History">
+        </activity>
     </application>
 
 </manifest>

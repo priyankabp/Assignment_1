@@ -26,10 +26,14 @@ import com.example.android.assignment_1.utils.StudentContract.*;
 import com.example.android.assignment_1.utils.StudentDbHelper;
 
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class EditProfile extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -150,10 +154,59 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
 
     };
 
+    public boolean validateDoB(String dob) {
+
+        Pattern pattern;
+        Matcher matcher;
+        final String dateOfBirthPattern = "(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)";
+        pattern = Pattern.compile(dateOfBirthPattern);
+
+
+        matcher = pattern.matcher(dob);
+
+        if (matcher.matches()) {
+            matcher.reset();
+
+            if (matcher.find()) {
+                String day = matcher.group(1);
+                String month = matcher.group(2);
+                int year = Integer.parseInt(matcher.group(3));
+
+                if (day.equals("31") &&
+                        (month.equals("4") || month.equals("6") || month.equals("9") ||
+                                month.equals("11") || month.equals("04") || month.equals("06") ||
+                                month.equals("09"))) {
+                    return false; // only 1,3,5,7,8,10,12 has 31 days
+                } else if (month.equals("2") || month.equals("02")) {
+                    //leap year
+                    if (year % 4 == 0) {
+                        if (day.equals("30") || day.equals("31")) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        if (day.equals("29") || day.equals("30") || day.equals("31")) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    }
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     // method to update the selected date from calender on the field.
     private void updateDoB() {
 
-        String myFormat = "MM/dd/yy";
+        String myFormat = "MM/dd/yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(myFormat, Locale.US);
         dateText.setText(simpleDateFormat.format(calendar.getTime()));
     }
@@ -185,8 +238,13 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         }
 
         // DoB validation
-        if (TextUtils.isEmpty(doBStr)) {
-            dateText.setError("Please select your date of birth");
+
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
+        if (TextUtils.isEmpty(doBStr) | !validateDoB(doBStr) | doBStr.compareTo((dateFormat.format(date)).toString()) >= 0) {
+
+            dateText.setError("Please select valid date of birth");
             isValid = false;
         }
 

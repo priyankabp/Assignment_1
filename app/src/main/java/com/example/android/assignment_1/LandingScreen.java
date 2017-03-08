@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class LandingScreen extends AppCompatActivity {
 
@@ -36,11 +38,17 @@ public class LandingScreen extends AppCompatActivity {
         logInUser = session.getUserDetails();
 
         textView = (TextView) findViewById(R.id.landingScreen_userSessionId);
-        textView.setText("SESSION ID :" + UserSessionManagement.sessionId);
+        textView.setText("SESSION ID: " + UserSessionManagement.sessionId);
 
         //Sets the registered username.
         textView = (TextView) findViewById(R.id.landing_screen_textView);
         textView.setText("Logged in user: " + logInUser);
+
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         activityTracker = new ActivityTracker(getApplicationContext(), logInUser);
         activityTracker.updateActivity(logInUser + " moved to Welcome page!");

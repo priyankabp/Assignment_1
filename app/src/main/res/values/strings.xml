@@ -20,7 +20,7 @@
     <string name="caption_hint_Registration_editText_name">Enter your name</string>
     <string name="caption_Registration_textView_major">Major</string>
     <string name="caption_hint_Registration_editText_email">example@montclair.edu</string>
-    <string name="caption_hint_Registration_editText_DoB">Enter your DOB</string>
+    <string name="caption_hint_Registration_editText_DoB">mm/dd/yyyy</string>
     <string name="caption_hint_Registration_editText_password1">Enter your password</string>
     <string name="caption_hint_Registration_editText_password2">Confirm  password</string>
     <string name="caption_Registration_button">Register</string>
@@ -41,7 +41,7 @@
     <string name="caption_displayPassword_textView">Your password is :</string>
 
     <string name="caption_EditProfile_button">Update</string>
-    <string name="caption_hint_EditProfile_editText_DoB">Update your dob</string>
+    <string name="caption_hint_EditProfile_editText_DoB">mm/dd/yyyy</string>
     <string name="caption_hint_EditProfile_editText_email">Update msu email</string>
     <string name="caption_EditProfile_textView_major">Major</string>
     <string name="caption_hint_EditProfile_editText_name">Update your name</string>
