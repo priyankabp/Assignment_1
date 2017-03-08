@@ -163,7 +163,7 @@
 
         <!-- DOB Label -->
         <TextView
-            android:id="@+id/Regisration_textView_password1"
+            android:id="@+id/Registration_textView_password1"
             style="@style/CategoryStyle"
             android:text="@string/caption_Registration_textView_password1" />
 
@@ -192,7 +192,7 @@
 
         <!-- DOB Label -->
         <TextView
-            android:id="@+id/Regisration_textView_password2"
+            android:id="@+id/Registration_textView_password2"
             style="@style/CategoryStyle"
             android:text="@string/caption_Registration_textView_password2" />
 

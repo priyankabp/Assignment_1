@@ -51,6 +51,7 @@
     <string name="caption_EditProfile_textView_dob">DOB</string>
 
     <string name="log_out">Log Out</string>
+    <string name="caption_addANote_button">Add A NOTE</string>
 
 
     <color name="white">#FFFFFF</color>
