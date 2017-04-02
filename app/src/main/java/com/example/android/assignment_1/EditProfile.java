@@ -211,6 +211,12 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         dateText.setText(simpleDateFormat.format(calendar.getTime()));
     }
 
+    public void clearErrors() {
+        editName.setError(null);
+        editEmail.setError(null);
+        dateText.setError(null);
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -274,6 +280,7 @@ public class EditProfile extends AppCompatActivity implements AdapterView.OnItem
         String emailStr = editEmail.getText().toString().trim();
         String dobStr = dateText.getText().toString().trim();
 
+        clearErrors();
         if (verifyData(nameStr, emailStr, dobStr)) {
             updateUserDetails(userNameStr, nameStr, majorStr, emailStr, dobStr);
 

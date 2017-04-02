@@ -161,7 +161,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- DOB Label -->
+        <!-- Password Label -->
         <TextView
             android:id="@+id/Registration_textView_password1"
             style="@style/CategoryStyle"
@@ -175,7 +175,7 @@
             android:orientation="vertical"
             android:paddingLeft="0dp">
 
-            <!-- DOB field -->
+            <!-- Password field -->
             <EditText
                 android:id="@+id/Registration_password1"
                 style="@style/EditorFieldStyle"
@@ -190,7 +190,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!-- DOB Label -->
+        <!-- Confirm Password Label -->
         <TextView
             android:id="@+id/Registration_textView_password2"
             style="@style/CategoryStyle"
@@ -204,7 +204,7 @@
             android:orientation="vertical"
             android:paddingLeft="0dp">
 
-            <!-- DOB field -->
+            <!-- Confirm Password field -->
             <EditText
                 android:id="@+id/Registration_password2"
                 style="@style/EditorFieldStyle"
