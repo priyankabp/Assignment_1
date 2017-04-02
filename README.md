@@ -28,3 +28,34 @@ Completed the following requirements:
 
 8. Replace major with a list of pre-defined majors (i.e Computer Science, IT .. ).
 
+Then you have to complete the following assignment-2 requirements:
+
+1- Create an SQLite database that:
+  - allows users to register only if:
+  - a chosen username doesn’t already exist,
+  - have a Montclair email,
+  - ‘password’ field and ‘confirm password’ fields match,
+  - password should include numbers and characters,
+  - DoB has the correct format,
+  - None of the registration fields are empty.
+  - allows users to update their information (i.e, email, name…),
+  - enables forget password validation, 
+    you may show the sought password on a separate activity.
+  - allows login.
+  
+2- Create a SharedPreference data file that:
+
+  - if a user logged in successfully, registers all main actions. 
+    i.e, if a user with username: JohnSmith then you should record all main actions of John such as visited page1 (activity1) on this   date/time then John moved to page2 on… .
+  - have one register per user (i.e, each user has her/his own browsing history).
+  
+3- All activities should work in portrait mode as well as in landscape mode (must use fragments).
+
+4- Create additional activities to accommodate the previous requirements.
+  - i.e: an activity to show the forget password or/and an activity to show the browsing history of a user and so on.
+
+5- You should allow a verified user to write a note and display previous note/s.
+  - You should save the notes using FILES.
+  
+Be creative in the way you link notes to users. i.e by naming, or by creating session-ids and so on.
+
